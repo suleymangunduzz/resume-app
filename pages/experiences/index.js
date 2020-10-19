@@ -8,7 +8,7 @@ function Experiences ({ data }) {
       <Head>
         <title>My Work Experiences</title>
       </Head>
-      { data.map(experience => <Experience data={experience}/>) }
+      { data.map((experience, index) => <Experience key={index} data={experience}/>) }
     </Layout>
   )
 }

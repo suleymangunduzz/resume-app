@@ -25,6 +25,11 @@
   line-height: 1.5;
 }
 
+.headingSm {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
 .borderCircle {
   border-radius: 9999px;
 }
@@ -49,4 +54,11 @@
 
 .lightText {
   color: #999;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
