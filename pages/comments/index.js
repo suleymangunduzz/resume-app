@@ -31,7 +31,7 @@ function Comments ({ data }) {
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://resume-backend-app.herokuapp.com/comments`)
+  const res = await fetch(`${__BASE_API_URL__}/comments`)
   const data = await res.json()
 
   // Pass data to the page via props
