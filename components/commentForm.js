@@ -25,7 +25,7 @@ export default function CommentForm() {
     const requestBody = {...values.user, show: false};
 
     const response = await fetch(
-      'https://resume-backend-app.herokuapp.com/comments/add',
+      `${__BASE_API_URL__}/comments/add`,
       {
         body: JSON.stringify(requestBody),
         headers: {
