@@ -8,7 +8,7 @@ function Experiences ({ data }) {
       <Head>
         <title>My Work Experiences</title>
       </Head>
-      { data.map((experience, index) => <Experience key={index} data={experience}/>) }
+      { data.sort((a,b) => a.order - b.order).map((experience, index) => <Experience key={index} data={experience}/>) }
     </Layout>
   )
 }
