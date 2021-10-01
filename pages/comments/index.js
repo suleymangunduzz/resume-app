@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Head from 'next/head'
 import utilStyles from '../../styles/utils.module.css'
 
 import Layout from '../../components/layout'
@@ -15,10 +14,7 @@ function Comments ({ data }) {
   const [showForm, setShowForm] = useState(false);
 
   return (
-    <Layout>
-      <Head>
-        <title>What People Say</title>
-      </Head>
+    <Layout pageTitle='What People Say'>
       {showComents ? <SimpleSlider items={slideItems}/> : null}
       <br />
       <br />

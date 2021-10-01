@@ -1,13 +1,10 @@
 import Head from 'next/head'
 import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
 import Menu from './menu'
 
-const name = 'Süleyman GÜNDÜZ'
 export const siteTitle = 'Süleyman GÜNDÜZ - Personal BLOG'
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, pageTitle }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -24,19 +21,10 @@ export default function Layout({ children, home }) {
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
+        <title>{pageTitle}</title>
       </Head>
       <header className={styles.header}>
-        {home ? (
-          <>
-            <Menu/>
-            <img
-              src="/images/profile.jpg"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : <Menu/> }
+        <Menu />
       </header>
       <main>{children}</main>
     </div>
