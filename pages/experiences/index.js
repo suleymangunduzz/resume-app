@@ -1,13 +1,9 @@
-import Head from 'next/head'
 import Layout from '../../components/layout'
 import Experience from '../../components/experience'
 
 function Experiences ({ data }) {
   return (
-    <Layout>
-      <Head>
-        <title>My Work Experiences</title>
-      </Head>
+    <Layout pageTitle='My Work Experiences'>
       { data.sort((a,b) => a.order - b.order).map((experience, index) => <Experience key={index} data={experience}/>) }
     </Layout>
   )
