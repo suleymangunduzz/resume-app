@@ -1,10 +1,13 @@
 import Layout from '../../components/layout'
 import Experience from '../../components/experience'
+import styles from '../../styles/experience.module.css'
 
-function Experiences ({ data }) {
+function Experiences({ data }) {
   return (
     <Layout pageTitle='My Work Experiences'>
-      { data.sort((a,b) => a.order - b.order).map((experience, index) => <Experience key={index} data={experience}/>) }
+      <div className={styles.container}>
+        {data.map((experience) => <Experience key={experience._id} data={experience} />)}
+      </div>
     </Layout>
   )
 }
@@ -16,7 +19,7 @@ export async function getServerSideProps() {
   const data = await res.json()
 
   // Pass data to the page via props
-  return { props: { data: data.reverse() } }
+  return { props: { data } }
 }
 
 export default Experiences
