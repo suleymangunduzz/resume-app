@@ -6,16 +6,13 @@ import Comment from '../../components/comment'
 import SimpleSlider from '../../components/SimpleSlider'
 import CommentForm from '../../components/commentForm'
 
-function Comments ({ data }) {
-  const filteredData = data.filter(comment => comment.show);
-  const slideItems = filteredData.map((comment, index) => <Comment key={index} data={comment}/>);
-  const showComents = filteredData.length;
-
+function Comments({ data }) {
   const [showForm, setShowForm] = useState(false);
+  const slideItems = data.map((comment) => <Comment key={comment._id} data={comment} />);
 
   return (
     <Layout pageTitle='What People Say'>
-      {showComents ? <SimpleSlider items={slideItems}/> : null}
+      <SimpleSlider items={slideItems} />
       <br />
       <br />
       <h1 className={utilStyles.headingSm} onClick={() => setShowForm((showForm) => !showForm)}>If you know me, you can click on this text and say something :)</h1>
@@ -31,7 +28,7 @@ export async function getServerSideProps() {
   const data = await res.json()
 
   // Pass data to the page via props
-  return { props: { data: data.reverse() } }
+  return { props: { data: data.filter(comment => comment.show) } }
 }
 
 export default Comments
