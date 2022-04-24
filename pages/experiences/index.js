@@ -19,7 +19,7 @@ export async function getServerSideProps() {
   const data = await res.json()
 
   // Pass data to the page via props
-  return { props: { data } }
+  return { props: { data: data.sort((a, b) => b.order - a.order) } }
 }
 
 export default Experiences

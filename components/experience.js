@@ -1,9 +1,17 @@
 import Link from 'next/link'
-import styles from './experience.module.css'
-import utilsStyles from '../styles/utils.module.css'
 import { getMonth, getYear } from 'date-fns'
 
+import Text from './text'
+import styles from './experience.module.css'
+import utilsStyles from '../styles/utils.module.css'
+
 const monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const formatDate = date => {
+  const month = monthList[getMonth(new Date(date))];
+  const year = getYear(new Date(date));
+  return `${year} ${month}`;
+}
 
 export default function Experience({ data }) {
   const {
@@ -14,23 +22,17 @@ export default function Experience({ data }) {
     endDate,
     stillWorking,
     website,
-    techStack
+    techStack,
+    location,
   } = data;
-
-  const formatDate = date => {
-    const month = monthList[getMonth(new Date(date))];
-    const year = getYear(new Date(date));
-
-    return `${year} ${month}`;
-  }
 
   return <div className={styles.container}>
     <h1 className={utilsStyles.heading2Xl}>{companyName}</h1>
-    <h1 className={utilsStyles.headingMd}>{title}</h1>
+    <h1 className={utilsStyles.headingMd}>{title} - {location}</h1>
     <div className={styles.dates}>
       {formatDate(beginDate)} - {stillWorking ? 'Present' : formatDate(endDate)}
     </div>
-    <p>{description}</p>
+    <Text>{description}</Text>
     <h1 className={utilsStyles.headingSm}>Tech Stack</h1>
     <ul>
       {techStack.map((item) => <li key={item}>{item}</li>)}
