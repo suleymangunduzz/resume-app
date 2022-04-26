@@ -1,26 +1,30 @@
 import Link from 'next/link'
+
+import { DESCRIPTION, GITHUB_URL, LINKEDIN_URL, NAME } from '../constants'
 import Layout from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import styles from '../styles/home.module.css'
 
-const name = "Süleyman GÜNDÜZ"
-const description = "I am a Software Engineer who lives in Luxembourg for a while. I believe that learning has no end and I am always willing to learn about new things and working hard to improve my skills. "
-const linkedInURL = "https://www.linkedin.com/in/gunduzsuleyman/"
-const githubURL = "https://github.com/suleymangunduzz"
+export async function getServerSideProps() {
+  const res = await fetch(`${__BASE_API_URL__}/tabs`)
+  const tabs = await res.json()
 
-export default function Home() {
+  return { props: { tabs: tabs.sort((a, b) => a.order - b.order) } }
+}
+
+export default function Home({ tabs }) {
   return (
-    <Layout pageTitle='About Me'>
+    <Layout pageTitle='About Me' tabs={tabs}>
       <section className={utilStyles.headingMd}>
         <img
           src="/images/profile.jpg"
           className={`${styles.headerHomeImage} ${styles.borderCircle}`}
-          alt={name}
+          alt={NAME}
         />
-        <h1 className={utilStyles.heading2Xl}>{name}</h1>
-        <p>{description}</p>
-        <p>You can contact me on <Link href={linkedInURL}><a>LinkedIn.</a></Link></p>
-        <p>My github <Link href={githubURL}><a>profile.</a></Link></p>
+        <h1 className={utilStyles.heading2Xl}>{NAME}</h1>
+        <p>{DESCRIPTION}</p>
+        <p>You can contact me on <Link href={LINKEDIN_URL}><a>LinkedIn.</a></Link></p>
+        <p>My github <Link href={GITHUB_URL}><a>profile.</a></Link></p>
       </section>
     </Layout>
   )
