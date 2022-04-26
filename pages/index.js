@@ -4,7 +4,7 @@ import utilStyles from '../styles/utils.module.css'
 import styles from '../styles/home.module.css'
 
 const name = "Süleyman GÜNDÜZ"
-const description = "I am a Software Engineer who lives in Luxembourg for a while. I believe that learning has no end and I am always willing to learn about new things and trying hard to improve my skills. "
+const description = "I am a Software Engineer who lives in Luxembourg for a while. I believe that learning has no end and I am always willing to learn about new things and working hard to improve my skills. "
 const linkedInURL = "https://www.linkedin.com/in/gunduzsuleyman/"
 const githubURL = "https://github.com/suleymangunduzz"
 
