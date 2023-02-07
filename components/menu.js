@@ -4,9 +4,7 @@ import styles from './menu.module.css'
 export default function Menu({ tabs }) {
   const visibleTabs = tabs.map(({ isVisible, key, path, displayText }) => isVisible ?
     <div className={styles.item} key={key}>
-      <Link href={path}>
-        <a>{displayText}</a>
-      </Link>
+      <Link href={path}>{displayText}</Link>
     </div> : null
   );
 

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 import { DESCRIPTION, GITHUB_URL, LINKEDIN_URL, NAME } from '../constants'
 import Layout from '../components/layout'
@@ -28,8 +28,8 @@ export default function Home({ tabs }) {
         </div>
         <h1 className={utilStyles.heading2Xl}>{NAME}</h1>
         <p>{DESCRIPTION}</p>
-        <p>You can contact me on <Link href={LINKEDIN_URL}><a>LinkedIn.</a></Link></p>
-        <p>My github <Link href={GITHUB_URL}><a>profile.</a></Link></p>
+        <p>You can contact me on <Link href={LINKEDIN_URL}>LinkedIn.</Link></p>
+        <p>My github <Link href={GITHUB_URL}>profile.</Link></p>
       </section>
     </Layout>
   )
