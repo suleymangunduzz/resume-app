@@ -37,6 +37,6 @@ export default function Experience({ data }) {
     <ul>
       {techStack.map((item) => <li key={item}>{item}</li>)}
     </ul>
-    <Link href={website}><a>Go to company's website</a></Link>
+    <Link href={website}>Go to company's website</Link>
   </div>
 }

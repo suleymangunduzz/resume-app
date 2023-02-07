@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/legacy/image'
 
 import { DESCRIPTION, GITHUB_URL, LINKEDIN_URL, NAME } from '../constants'
 import Layout from '../components/layout'
@@ -16,15 +17,19 @@ export default function Home({ tabs }) {
   return (
     <Layout pageTitle='About Me' tabs={tabs}>
       <section className={utilStyles.headingMd}>
-        <img
-          src="/images/profile.jpg"
-          className={`${styles.headerHomeImage} ${styles.borderCircle}`}
-          alt={NAME}
-        />
+        <div className={styles.imageContainer}>
+          <Image
+            alt={NAME}
+            height={150}
+            width={150}
+            src="/images/profile.jpg"
+            className={`${styles.headerHomeImage} ${styles.borderCircle}`}
+          />
+        </div>
         <h1 className={utilStyles.heading2Xl}>{NAME}</h1>
         <p>{DESCRIPTION}</p>
-        <p>You can contact me on <Link href={LINKEDIN_URL}><a>LinkedIn.</a></Link></p>
-        <p>My github <Link href={GITHUB_URL}><a>profile.</a></Link></p>
+        <p>You can contact me on <Link href={LINKEDIN_URL}>LinkedIn.</Link></p>
+        <p>My github <Link href={GITHUB_URL}>profile.</Link></p>
       </section>
     </Layout>
   )
