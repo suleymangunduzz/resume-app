@@ -1,4 +1,4 @@
-import Slider from "react-slick";
+// import Slider from "react-slick";
 import utilsStyles from '../styles/utils.module.css'
 
 export default function SimpleSlider({ items }) {
@@ -14,9 +14,9 @@ export default function SimpleSlider({ items }) {
   return (
     <div>
       <h1 className={utilsStyles.headingSm}>What do people say about me...</h1>
-      <Slider {...settings}>
+      {/* <Slider {...settings}> */}
         {items?.map((item, index) => <div key={index}>{item}</div>)}
-      </Slider>
+      {/* </Slider> */}
     </div>
   );
 }
