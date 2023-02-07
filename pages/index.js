@@ -19,11 +19,11 @@ export default function Home({ tabs }) {
       <section className={utilStyles.headingMd}>
         <div className={styles.imageContainer}>
           <Image
-            src="/images/profile.jpg"
-            width={150}
-            height={150}
-            className={`${styles.headerHomeImage} ${styles.borderCircle}`}
             alt={NAME}
+            height={150}
+            width={150}
+            src="/images/profile.jpg"
+            className={`${styles.headerHomeImage} ${styles.borderCircle}`}
           />
         </div>
         <h1 className={utilStyles.heading2Xl}>{NAME}</h1>
