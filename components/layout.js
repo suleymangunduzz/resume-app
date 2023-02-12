@@ -1,8 +1,8 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
-import { SITE_TITLE } from '../constants'
-import styles from './layout.module.css'
-import Menu from './menu'
+import { SITE_TITLE } from '../constants';
+import styles from './layout.module.css';
+import Menu from './menu';
 
 export default function Layout({ children, pageTitle, tabs }) {
   return (
@@ -24,9 +24,9 @@ export default function Layout({ children, pageTitle, tabs }) {
         <title>{pageTitle}</title>
       </Head>
       <header className={styles.header}>
-        <Menu tabs={tabs}/>
+        <Menu tabs={tabs} />
       </header>
       <main>{children}</main>
     </div>
-  )
+  );
 }

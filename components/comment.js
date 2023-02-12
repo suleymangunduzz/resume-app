@@ -1,13 +1,8 @@
-import styles from './comment.module.css'
-import utilsStyles from '../styles/utils.module.css'
+import styles from './comment.module.css';
+import utilsStyles from '../styles/utils.module.css';
 
 export default function Comment({ data }) {
-  const {
-    companyName,
-    description,
-    name,
-    title
-  } = data;
+  const { companyName, description, name, title } = data;
 
   return (
     <div className={styles.container}>
@@ -16,5 +11,5 @@ export default function Comment({ data }) {
       <h1 className={utilsStyles.headingSm}>{companyName}</h1>
       <h1 className={utilsStyles.headingMd}>{title}</h1>
     </div>
-  )
+  );
 }
