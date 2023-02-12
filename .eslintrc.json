@@ -6,7 +6,6 @@
   ],
   "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error",
-    "semi": [2, "always"]
+    "prettier/prettier": "error"
   }
 }
