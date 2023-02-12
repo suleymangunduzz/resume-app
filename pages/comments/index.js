@@ -5,7 +5,7 @@ import utilStyles from '../../styles/utils.module.css'
 import Layout from '../../components/layout'
 import Comment from '../../components/comment'
 import SimpleSlider from '../../components/SimpleSlider'
-import CommentForm from '../../components/commentForm'
+import CommentForm from '../../components/CommentForm'
 
 export async function getServerSideProps() {
   const fetchComments = fetch(`${__BASE_API_URL__}/comments`).then(res => res.json());
