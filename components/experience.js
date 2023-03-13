@@ -1,5 +1,10 @@
 import Link from 'next/link';
-import { getMonth, getYear } from 'date-fns';
+import {
+  getMonth,
+  getYear,
+  differenceInMonths,
+  differenceInYears,
+} from 'date-fns';
 
 import Text from './text';
 import styles from './experience.module.css';
@@ -26,6 +31,28 @@ const formatDate = (date) => {
   return `${year} ${month}`;
 };
 
+const getDateDiff = (beginDate, endDate, stillWorking) => {
+  const dateDifferenceInMonths = differenceInMonths(
+    stillWorking ? new Date().getTime() : new Date(endDate).getTime(),
+    new Date(beginDate).getTime()
+  );
+
+  const dateDifferenceInYears = differenceInYears(
+    stillWorking ? new Date().getTime() : new Date(endDate).getTime(),
+    new Date(beginDate).getTime()
+  );
+
+  const years = dateDifferenceInYears
+    ? `${dateDifferenceInYears} year${dateDifferenceInYears > 1 ? 's ' : ' '}`
+    : '';
+
+  const months = `${dateDifferenceInMonths % 12} month${
+    dateDifferenceInMonths % 12 > 1 ? 's' : ''
+  }`;
+
+  return `(${years}${months})`;
+};
+
 export default function Experience({ data }) {
   const {
     companyName,
@@ -39,6 +66,10 @@ export default function Experience({ data }) {
     location,
   } = data;
 
+  const dateDiff = getDateDiff(beginDate, endDate, stillWorking);
+  const experienceStartDate = formatDate(beginDate);
+  const experienceEndDate = stillWorking ? 'Present' : formatDate(endDate);
+
   return (
     <div className={styles.container}>
       <h1 className={utilsStyles.heading2Xl}>{companyName}</h1>
@@ -46,8 +77,7 @@ export default function Experience({ data }) {
         {title} - {location}
       </h1>
       <div className={styles.dates}>
-        {formatDate(beginDate)} -{' '}
-        {stillWorking ? 'Present' : formatDate(endDate)}
+        {`${dateDiff}, ${experienceStartDate} - ${experienceEndDate}`}
       </div>
       <Text>{description}</Text>
       <h1 className={utilsStyles.headingSm}>Tech Stack</h1>
