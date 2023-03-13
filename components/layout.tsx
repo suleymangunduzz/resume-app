@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { SITE_TITLE } from '../constants';
+import { SITE_TITLE } from '@/constants';
 import styles from './layout.module.css';
 import Menu from './menu';
 

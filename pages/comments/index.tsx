@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { KNOW_ME_TEXT } from '../../constants';
-import utilStyles from '../../styles/utils.module.css';
-import Layout from '../../components/layout';
-import Comment from '../../components/comment';
-import SimpleSlider from '../../components/SimpleSlider';
-import CommentForm from '../../components/CommentForm';
+import { KNOW_ME_TEXT } from '@/constants';
+import utilStyles from '@/styles/utils.module.css';
+import Layout from '@/components/layout';
+import Comment from '@/components/comment';
+import SimpleSlider from '@/components/SimpleSlider';
+import CommentForm from '@/components/CommentForm';
 
 export async function getServerSideProps() {
   const fetchComments = fetch(`${__BASE_API_URL__}/comments`).then((res) =>
@@ -25,7 +25,7 @@ export async function getServerSideProps() {
 function Comments({ data, tabs }) {
   const [showForm, setShowForm] = useState(false);
   const slideItems = data.map((comment) => (
-    <Comment key={comment._id} data={comment} />
+    <Comment key={comment._id} comment={comment} />
   ));
 
   return (

@@ -6,7 +6,7 @@ module.exports = {
     config.plugins.push(
       new webpack.DefinePlugin({
         __BASE_API_URL__: JSON.stringify(
-          dev
+          !dev
             ? 'http://localhost:3001'
             : 'https://resume-app-backend.vercel.app/'
         ),

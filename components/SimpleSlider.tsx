@@ -1,5 +1,5 @@
 import Slider from 'react-slick';
-import utilsStyles from '../styles/utils.module.css';
+import utilsStyles from '@/styles/utils.module.css';
 
 export default function SimpleSlider({ items }) {
   const settings = {
