@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@types/node": "18.15.2",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.28",
     "eslint": "8.34.0",
     "eslint-config-prettier": "^8.6.0",
