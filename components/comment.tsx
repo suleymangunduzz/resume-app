@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styles from './comment.module.css';
 import utilsStyles from '../styles/utils.module.css';
 
