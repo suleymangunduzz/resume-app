@@ -1,6 +1,6 @@
-import Layout from '../../components/layout';
-import Experience from '../../components/experience';
-import styles from '../../styles/experience.module.css';
+import Layout from '@/components/layout';
+import Experience from '@/components/experience';
+import styles from '@/styles/experience.module.css';
 
 export async function getServerSideProps() {
   const fetchExperience = fetch(`${__BASE_API_URL__}/experience`).then((res) =>

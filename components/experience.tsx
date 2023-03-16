@@ -8,7 +8,7 @@ import {
 
 import Text from './text';
 import styles from './experience.module.css';
-import utilsStyles from '../styles/utils.module.css';
+import utilsStyles from '@/styles/utils.module.css';
 
 const monthList = [
   'January',

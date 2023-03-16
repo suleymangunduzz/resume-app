@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/legacy/image';
 
-import { DESCRIPTION, GITHUB_URL, LINKEDIN_URL, NAME } from '../constants';
-import Layout from '../components/layout';
-import utilStyles from '../styles/utils.module.css';
-import styles from '../styles/home.module.css';
+import { DESCRIPTION, GITHUB_URL, LINKEDIN_URL, NAME } from '@/constants';
+import Layout from '@/components/layout';
+import utilStyles from '@/styles/utils.module.css';
+import styles from '@/styles/home.module.css';
 
 export async function getServerSideProps() {
   const res = await fetch(`${__BASE_API_URL__}/tabs`);

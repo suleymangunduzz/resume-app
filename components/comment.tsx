@@ -1,8 +1,16 @@
+import { FC } from 'react';
 import styles from './comment.module.css';
-import utilsStyles from '../styles/utils.module.css';
 
-export default function Comment({ data }) {
-  const { companyName, description, name, title } = data;
+import utilsStyles from '@/styles/utils.module.css';
+type Comment = {
+  description: string;
+  companyName: string;
+  name: string;
+  title: string;
+};
+
+const Comment: FC<{ comment: Comment }> = ({ comment }) => {
+  const { companyName, description, name, title } = comment;
 
   return (
     <div className={styles.container}>
@@ -12,4 +20,6 @@ export default function Comment({ data }) {
       <h1 className={utilsStyles.headingMd}>{title}</h1>
     </div>
   );
-}
+};
+
+export default Comment;
