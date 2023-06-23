@@ -1,31 +1,37 @@
-import { useState } from 'react';
+import { useState, FC } from 'react';
 
 import { KNOW_ME_TEXT } from '@/constants';
 import utilStyles from '@/styles/utils.module.css';
 import Layout from '@/components/layout';
-import Comment from '@/components/comment';
+import CommentComponent from '@/components/comment';
 import SimpleSlider from '@/components/SimpleSlider';
 import CommentForm from '@/components/CommentForm';
+import { fetchComments, fetchTabs } from '@/service';
+import { Comment, Tab } from '@/types';
 
 export async function getServerSideProps() {
-  const fetchComments = fetch(`${__BASE_API_URL__}/comments`).then((res) =>
-    res.json()
-  );
-  const fetchTabs = fetch(`${__BASE_API_URL__}/tabs`).then((res) => res.json());
-  const [comments, tabs] = await Promise.all([fetchComments, fetchTabs]);
+  try {
+    const [comments, tabs] = await Promise.all([fetchComments, fetchTabs]);
 
-  return {
-    props: {
-      data: comments.filter((comment) => comment.show),
-      tabs: tabs.sort((a, b) => a.order - b.order),
-    },
-  };
+    return {
+      props: {
+        comments: comments.filter((comment) => comment.show),
+        tabs: [...tabs].sort((a, b) => a.order - b.order),
+      },
+    };
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-function Comments({ data, tabs }) {
-  const [showForm, setShowForm] = useState(false);
-  const slideItems = data.map((comment) => (
-    <Comment key={comment._id} comment={comment} />
+const Comments: FC<{ comments: Array<Comment>; tabs: Array<Tab> }> = ({
+  comments,
+  tabs,
+}) => {
+  const [showForm, setShowForm] = useState<boolean>(false);
+
+  const slideItems = comments.map((comment) => (
+    <CommentComponent key={comment._id} comment={comment} />
   ));
 
   return (
@@ -42,6 +48,6 @@ function Comments({ data, tabs }) {
       {showForm && <CommentForm />}
     </Layout>
   );
-}
+};
 
 export default Comments;
