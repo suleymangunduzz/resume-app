@@ -7,18 +7,22 @@ import { Experience, Tab } from '@/types';
 import { PAGES } from '@/constants';
 
 export async function getServerSideProps() {
+  let props: {
+    experienceList: ReadonlyArray<Experience>;
+    tabs: ReadonlyArray<Tab>;
+  } = { experienceList: [], tabs: [] };
   try {
     const [experiences, tabs] = await Promise.all([fetchExperience, fetchTabs]);
 
-    return {
-      props: {
-        experienceList: [...experiences].sort((a, b) => b.order - a.order),
-        tabs: [...tabs].sort((a, b) => a.order - b.order),
-      },
+    props = {
+      experienceList: [...experiences].sort((a, b) => b.order - a.order),
+      tabs: [...tabs].sort((a, b) => a.order - b.order),
     };
   } catch (error) {
     console.error(error);
   }
+
+  return { props };
 }
 
 const Experiences: FC<{

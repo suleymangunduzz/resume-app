@@ -9,20 +9,25 @@ import CommentForm from '@/components/CommentForm';
 import { fetchComments, fetchTabs } from '@/service';
 import { Comment, Tab } from '@/types';
 
-export async function getServerSideProps() {
+export const getServerSideProps = async () => {
+  let props: { comments: ReadonlyArray<Comment>; tabs: ReadonlyArray<Tab> } = {
+    comments: [],
+    tabs: [],
+  };
+
   try {
     const [comments, tabs] = await Promise.all([fetchComments, fetchTabs]);
 
-    return {
-      props: {
-        comments: comments.filter((comment) => comment.show),
-        tabs: [...tabs].sort((a, b) => a.order - b.order),
-      },
+    props = {
+      comments: comments.filter((comment) => comment.show),
+      tabs: [...tabs].sort((a, b) => a.order - b.order),
     };
   } catch (error) {
     console.error(error);
   }
-}
+
+  return { props };
+};
 
 const Comments: FC<{ comments: Array<Comment>; tabs: Array<Tab> }> = ({
   comments,
