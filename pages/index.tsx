@@ -1,21 +1,33 @@
+import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/legacy/image';
 
-import { DESCRIPTION, GITHUB_URL, LINKEDIN_URL, NAME } from '@/constants';
 import Layout from '@/components/layout';
+import {
+  DESCRIPTION,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  NAME,
+  PAGES,
+} from '@/constants';
+import { fetchTabs } from '@/service';
 import utilStyles from '@/styles/utils.module.css';
 import styles from '@/styles/home.module.css';
+import { Tab } from '@/types';
 
 export async function getServerSideProps() {
-  const res = await fetch(`${__BASE_API_URL__}/tabs`);
-  const tabs = await res.json();
+  try {
+    const tabs = await fetchTabs;
 
-  return { props: { tabs: tabs.sort((a, b) => a.order - b.order) } };
+    return { props: { tabs: [...tabs].sort((a, b) => a.order - b.order) } };
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-export default function Home({ tabs }) {
+const Home: FC<{ tabs: Array<Tab> }> = ({ tabs }) => {
   return (
-    <Layout pageTitle="About Me" tabs={tabs}>
+    <Layout pageTitle={PAGES.ABOUT_ME} tabs={tabs}>
       <section className={utilStyles.headingMd}>
         <div className={styles.imageContainer}>
           <Image
@@ -37,4 +49,6 @@ export default function Home({ tabs }) {
       </section>
     </Layout>
   );
-}
+};
+
+export default Home;

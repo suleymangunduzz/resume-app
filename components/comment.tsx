@@ -2,14 +2,9 @@ import { FC } from 'react';
 import styles from './comment.module.css';
 
 import utilsStyles from '@/styles/utils.module.css';
-type Comment = {
-  description: string;
-  companyName: string;
-  name: string;
-  title: string;
-};
+import { Comment } from '@/types';
 
-const Comment: FC<{ comment: Comment }> = ({ comment }) => {
+const CommentComp: FC<{ comment: Comment }> = ({ comment }) => {
   const { companyName, description, name, title } = comment;
 
   return (
@@ -22,4 +17,4 @@ const Comment: FC<{ comment: Comment }> = ({ comment }) => {
   );
 };
 
-export default Comment;
+export default CommentComp;

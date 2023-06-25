@@ -1,6 +1,6 @@
 import { useState, FC } from 'react';
 
-import { KNOW_ME_TEXT } from '@/constants';
+import { KNOW_ME_TEXT, PAGES } from '@/constants';
 import utilStyles from '@/styles/utils.module.css';
 import Layout from '@/components/layout';
 import CommentComponent from '@/components/comment';
@@ -35,7 +35,7 @@ const Comments: FC<{ comments: Array<Comment>; tabs: Array<Tab> }> = ({
   ));
 
   return (
-    <Layout pageTitle="What People Say" tabs={tabs}>
+    <Layout pageTitle={PAGES.WHAT_PEOPLE_SAY} tabs={tabs}>
       <SimpleSlider items={slideItems} />
       <br />
       <br />
