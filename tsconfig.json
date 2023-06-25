@@ -17,6 +17,8 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/styles/*": ["styles/*"],
+      "@/types": ["types"],
+      "@/service": ["service"],
       "@/constants": ["constants"]
     }
   },

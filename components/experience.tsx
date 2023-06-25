@@ -9,24 +9,14 @@ import {
 import Text from './text';
 import styles from './experience.module.css';
 import utilsStyles from '@/styles/utils.module.css';
+import { MONTH_LIST } from '@/constants';
 
-const monthList = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-
+/*
+  TODO: Fix the types for the entire file.
+  Create helper methods for the dates with proper types.
+*/
 const formatDate = (date) => {
-  const month = monthList[getMonth(new Date(date))];
+  const month = MONTH_LIST[getMonth(new Date(date))];
   const year = getYear(new Date(date));
   return `${year} ${month}`;
 };

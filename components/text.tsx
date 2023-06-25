@@ -1,3 +1,4 @@
+// TODO: what is this file :D ? Refactor these parts, make it more understandable.
 function getLink(curr) {
   return curr.includes('.com')
     ? `<a href="https://${curr}" target="blank">${curr}</a>`

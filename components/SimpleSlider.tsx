@@ -1,6 +1,8 @@
 import Slider from 'react-slick';
 import utilsStyles from '@/styles/utils.module.css';
 
+// TODO: create more modern testimonials section instead of this slider.
+// Remove its dependencies.
 export default function SimpleSlider({ items }) {
   const settings = {
     dots: true,

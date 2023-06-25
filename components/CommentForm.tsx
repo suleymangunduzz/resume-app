@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import { addComment } from '@/service';
+import { useEffect, useState, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './commentForm.module.css';
 
-export default function CommentForm() {
-  const [resetForm, setResetForm] = useState(false);
+// TODO: Fix the types for the entire file.
+// TODO: Remove the react-hook-form dependency, use the simple form instead.
+const CommentForm: FC = () => {
+  const [resetForm, setResetForm] = useState<boolean>(false);
   const {
     reset,
     register,
@@ -19,13 +22,7 @@ export default function CommentForm() {
 
   const onSubmit = async (data) => {
     try {
-      await fetch(`${__BASE_API_URL__}/comments/add`, {
-        body: JSON.stringify({ ...data, show: false }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-      });
+      await addComment(data);
     } catch (error) {
       console.log({ error });
     } finally {
@@ -55,4 +52,6 @@ export default function CommentForm() {
       <button type="submit">Submit</button>
     </form>
   );
-}
+};
+
+export default CommentForm;

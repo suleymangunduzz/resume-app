@@ -1,10 +1,16 @@
+import { FC, ReactElement } from 'react';
 import Head from 'next/head';
 
-import { SITE_TITLE } from '@/constants';
+import { PAGES, SITE_TITLE } from '@/constants';
 import styles from './layout.module.css';
 import Menu from './menu';
+import { Tab } from '@/types';
 
-export default function Layout({ children, pageTitle, tabs }) {
+const Layout: FC<{
+  children: ReactElement | ReactElement[];
+  pageTitle: (typeof PAGES)[keyof typeof PAGES];
+  tabs: Array<Tab>;
+}> = ({ children, pageTitle, tabs }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -29,4 +35,6 @@ export default function Layout({ children, pageTitle, tabs }) {
       <main>{children}</main>
     </div>
   );
-}
+};
+
+export default Layout;
