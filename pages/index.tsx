@@ -16,13 +16,19 @@ import styles from '@/styles/home.module.css';
 import { Tab } from '@/types';
 
 export async function getServerSideProps() {
-  try {
-    const tabs = await fetchTabs;
+  let tabs: Tab[] = [];
 
-    return { props: { tabs: [...tabs].sort((a, b) => a.order - b.order) } };
+  try {
+    tabs = [...(await fetchTabs)].sort((a, b) => a.order - b.order);
   } catch (error) {
     console.error(error);
   }
+
+  return {
+    props: {
+      tabs,
+    },
+  };
 }
 
 const Home: FC<{ tabs: Array<Tab> }> = ({ tabs }) => {
