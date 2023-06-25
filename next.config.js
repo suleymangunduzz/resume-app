@@ -8,7 +8,7 @@ module.exports = {
         __BASE_API_URL__: JSON.stringify(
           dev
             ? 'http://localhost:3001'
-            : 'https://resume-app-backend.vercel.app/'
+            : 'https://resume-app-backend.vercel.app'
         ),
       })
     );
