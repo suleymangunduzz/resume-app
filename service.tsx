@@ -1,19 +1,19 @@
 import { Comment, Experience, Tab } from '@/types';
 
 export const fetchComments: Promise<ReadonlyArray<Comment>> = fetch(
-  `${__BASE_API_URL__}/comments`
+  `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments`,
 ).then((res) => res.json());
 
 export const fetchTabs: Promise<ReadonlyArray<Tab>> = fetch(
-  `${__BASE_API_URL__}/tabs`
+  `${process.env.NEXT_PUBLIC_BASE_API_URL}/tabs`,
 ).then((res) => res.json());
 
 export const fetchExperience: Promise<ReadonlyArray<Experience>> = fetch(
-  `${__BASE_API_URL__}/experience`
+  `${process.env.NEXT_PUBLIC_BASE_API_URL}/experience`,
 ).then((res) => res.json());
 
 export const addComment = (comment: Omit<Comment, 'show'>) =>
-  fetch(`${__BASE_API_URL__}/comments/add`, {
+  fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/comments/add`, {
     body: JSON.stringify({ ...comment, show: false }),
     headers: {
       'Content-Type': 'application/json',

@@ -1,0 +1,26 @@
+{
+  "AboutPage": {
+    "meta": {
+      "title": "À propos de moi - Portfolio",
+      "description": "Ceci est le site portfolio."
+    },
+    "title": "Bienvenue sur notre site !",
+    "description": "Ceci est la version française."
+  },
+  "ExperiencesPage": {
+    "meta": {
+      "title": "Mon Expérience - Portfolio",
+      "description": "Un résumé de mon expérience professionnelle."
+    },
+    "title": "Mon Expérience",
+    "description": "Voici un résumé de mon expérience professionnelle."
+  },
+  "CommentsPage": {
+    "meta": {
+      "title": "Commentaires des Utilisateurs - Portfolio",
+      "description": "Lisez ce que les utilisateurs ont à dire."
+    },
+    "title": "Commentaires des Utilisateurs",
+    "description": "Il n'y a pas encore de commentaires."
+  }
+}

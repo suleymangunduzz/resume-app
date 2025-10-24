@@ -1,0 +1,26 @@
+{
+  "AboutPage": {
+    "meta": {
+      "title": "About me - Portfolio",
+      "description": "This is the portfolio website."
+    },
+    "title": "About me",
+    "description": "This is the portfolio website."
+  },
+  "ExperiencesPage": {
+    "meta": {
+      "title": "My Experience - Portfolio",
+      "description": "A summary of my professional experience."
+    },
+    "title": "My Experience",
+    "description": "Here is a summary of my professional experience."
+  },
+  "CommentsPage": {
+    "meta": {
+      "title": "User Comments - Portfolio",
+      "description": "Read what users have to say."
+    },
+    "title": "User Comments",
+    "description": "There are no comments yet."
+  }
+}
