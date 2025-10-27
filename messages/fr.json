@@ -13,7 +13,9 @@
       "description": "Un résumé de mon expérience professionnelle."
     },
     "title": "Mon Expérience",
-    "description": "Voici un résumé de mon expérience professionnelle."
+    "description": "Voici un résumé de mon expérience professionnelle.",
+    "techStack": "Technologies Utilisées",
+    "present": "Présent"
   },
   "CommentsPage": {
     "meta": {

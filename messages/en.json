@@ -13,7 +13,9 @@
       "description": "A summary of my professional experience."
     },
     "title": "My Experience",
-    "description": "Here is a summary of my professional experience."
+    "description": "Here is a summary of my professional experience.",
+    "techStack": "Tech Stack",
+    "present": "Present"
   },
   "CommentsPage": {
     "meta": {

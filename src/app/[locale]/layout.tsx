@@ -1,5 +1,13 @@
-import { Tab } from '@/types';
 import Link from 'next/link';
+
+type Tab = {
+  _id: string;
+  isVisible: string;
+  key: string;
+  path: string;
+  displayText: string;
+  order: number;
+};
 
 type Props = {
   children: React.ReactNode;
@@ -12,7 +20,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   const navigationTabs = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_API_URL}/tabs`,
   );
-  const tabs: Array<Tab> = await navigationTabs.json();
+
+  const tabs: ReadonlyArray<Tab> = await navigationTabs.json();
 
   return (
     <section>
