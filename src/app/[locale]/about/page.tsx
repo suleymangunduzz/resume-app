@@ -16,15 +16,48 @@ export default function Page() {
   const t = useTranslations('AboutPage');
 
   return (
-    <main>
+    <section className="text-center px-4">
+      <h1 className="text-5xl font-bold mb-4">
+        {`${t('helloText', { name: 'Sulo' })} 👋`}
+      </h1>
       <Image
         src="/images/profile.jpg"
         alt="profile picture"
+        className="mx-auto rounded-full mb-6"
         width={150}
         height={150}
       />
-      <h1 className="text-3xl font-bold underline">{t('title')}</h1>
-      <p>{t('description')}</p>
-    </main>
+      <p className="text-lg text-gray-600">{t('description')}</p>
+      <br />
+      <p className="text-lg text-gray-600">
+        {t.rich('contactMe', {
+          link: (children) => (
+            <a
+              href="https://www.linkedin.com/in/gunduzsuleyman/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline"
+            >
+              {children}
+            </a>
+          ),
+        })}
+      </p>
+      <br />
+      <p className="text-lg text-gray-600">
+        {t.rich('myGitHub', {
+          link: (children) => (
+            <a
+              href="https://github.com/suleymangunduzz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 underline"
+            >
+              {children}
+            </a>
+          ),
+        })}
+      </p>
+    </section>
   );
 }

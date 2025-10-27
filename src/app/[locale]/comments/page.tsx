@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import CommentForm from '@/app/[locale]/comments/CommentForm';
 
 type Params = Promise<{ locale: string }>;
 
@@ -35,31 +36,30 @@ export default async function Page({ params }: PageProps) {
   const commentsData: ReadonlyArray<Comment> = await comments.json();
 
   return (
-    <main>
-      <h1>{t('title')}</h1>
-      <p>{t('description')}</p>
-      <div>
-        {commentsData.map(
-          ({ _id: id, name, title, companyName, show, description }) =>
-            show ? (
-              <div key={id}>
-                <h3>
-                  {name} - {title} at {companyName}
-                </h3>
-                <p>{description}</p>
+    <section>
+      <h2 className="text-3xl font-semibold mb-6 text-center">{t('title')}</h2>
+      <div className="grid gap-6 sm:grid-cols-2 mb-6">
+        {commentsData.map(({ description, name, title, companyName, show }) =>
+          show ? (
+            <div
+              key={title}
+              className="rounded-2xl bg-white p-6 shadow-md hover:shadow-lg transition"
+            >
+              <p className="text-gray-700 italic">“{description}”</p>
+              <div className="mt-4">
+                <h3 className="font-semibold text-gray-900">{name}</h3>
+                <p className="text-sm text-gray-500">
+                  {title} at {companyName}
+                </p>
               </div>
-            ) : null,
+            </div>
+          ) : null,
         )}
       </div>
-    </main>
+      <div>
+        <hr className="my-10" />
+      </div>
+      <CommentForm />
+    </section>
   );
 }
-
-// export const addComment = (comment) =>
-//   fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/comments/add`, {
-//     body: JSON.stringify({ ...comment, show: false }),
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     method: 'POST',
-//   });

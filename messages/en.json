@@ -1,11 +1,25 @@
 {
+  "Shared": {
+    "nav": {
+      "title": "My Portolio",
+      "comments": "Comments",
+      "about": "About",
+      "experiences": "Experiences"
+    },
+    "footer": {
+      "text": "© {year} {name} Portfolio. All rights reserved."
+    }
+  },
   "AboutPage": {
     "meta": {
       "title": "About me - Portfolio",
       "description": "This is the portfolio website."
     },
     "title": "About me",
-    "description": "I am a Software Engineer who lives in Luxembourg for a while. I believe that learning has no end and I am always willing to learn about new things and working hard to improve my skills."
+    "helloText": "It's me, {name}!",
+    "description": "I am a Software Engineer who lives in Luxembourg for a while. I believe that learning has no end and I am always willing to learn about new things and working hard to improve my skills.",
+    "contactMe": "You can contact me via <link>LinkedIn</link>",
+    "myGitHub": "My GitHub <link>Profile</link>"
   },
   "ExperiencesPage": {
     "meta": {
@@ -22,7 +36,19 @@
       "title": "User Comments - Portfolio",
       "description": "Read what users have to say."
     },
-    "title": "User Comments",
-    "description": "There are no comments yet."
+    "title": "Testimonials",
+    "description": "There are no comments yet.",
+    "form": {
+      "title": "Leave a Comment",
+      "submitCTAText": "Submit Comment",
+      "fields": {
+        "name": "Name",
+        "title": "Job Title",
+        "titlePlaceholder": "e.g. Software Engineer",
+        "companyName": "Company Name",
+        "description": "Description",
+        "descriptionPlaceholder": "Write your comment here..."
+      }
+    }
   }
 }

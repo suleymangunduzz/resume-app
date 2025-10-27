@@ -13,7 +13,7 @@ export default async function RootLayout({ children, params }: Props) {
   return (
     <html lang={locale}>
       <NextIntlClientProvider>
-        <body>{children}</body>
+        <body className="bg-gray-50 text-gray-900">{children}</body>
       </NextIntlClientProvider>
     </html>
   );

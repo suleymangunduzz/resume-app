@@ -1,11 +1,25 @@
 {
+  "Shared": {
+    "nav": {
+      "title": "Mon Portfolio",
+      "comments": "Commentaires",
+      "about": "À propos",
+      "experiences": "Expériences"
+    },
+    "footer": {
+      "text": "© {year} {name} Portfolio. Tous droits réservés."
+    }
+  },
   "AboutPage": {
     "meta": {
       "title": "À propos de moi - Portfolio",
       "description": "Ceci est le site portfolio."
     },
     "title": "À propos de moi",
-    "description": "Je suis un ingénieur logiciel qui vit au Luxembourg depuis un certain temps. Je crois que l'apprentissage n'a pas de fin et je suis toujours prêt à apprendre de nouvelles choses et à travailler dur pour améliorer mes compétences."
+    "helloText": "C'est moi, {name}!",
+    "description": "Je suis un ingénieur logiciel qui vit au Luxembourg depuis un certain temps. Je crois que l'apprentissage n'a pas de fin et je suis toujours prêt à apprendre de nouvelles choses et à travailler dur pour améliorer mes compétences.",
+    "contactMe": "Vous pouvez me contacter via <link>LinkedIn</link>",
+    "myGitHub": "Mon <link>Profil</link> GitHub"
   },
   "ExperiencesPage": {
     "meta": {
@@ -23,6 +37,18 @@
       "description": "Lisez ce que les utilisateurs ont à dire."
     },
     "title": "Commentaires des Utilisateurs",
-    "description": "Il n'y a pas encore de commentaires."
+    "description": "Il n'y a pas encore de commentaires.",
+    "form": {
+      "title": "Laisser un Commentaire",
+      "submitCTAText": "Soumettre le Commentaire",
+      "fields": {
+        "name": "Nom",
+        "title": "Titre du Poste",
+        "titlePlaceholder": "ex. Ingénieur Logiciel",
+        "companyName": "Nom de l'Entreprise",
+        "description": "Description",
+        "descriptionPlaceholder": "Écrivez votre commentaire ici..."
+      }
+    }
   }
 }
