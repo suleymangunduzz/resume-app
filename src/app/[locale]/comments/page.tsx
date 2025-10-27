@@ -42,7 +42,7 @@ export default async function Page({ params }: PageProps) {
         {commentsData.map(
           ({ _id: id, name, title, companyName, show, description }) =>
             show ? (
-              <div key={id} style={{ marginBottom: '20px' }}>
+              <div key={id}>
                 <h3>
                   {name} - {title} at {companyName}
                 </h3>

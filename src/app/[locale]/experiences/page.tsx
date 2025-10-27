@@ -56,7 +56,7 @@ export default async function Page({ params }: PageProps) {
             techStack,
             location,
           }) => (
-            <div key={id} style={{ marginBottom: '20px' }}>
+            <div key={id}>
               <h2>
                 {title} at{' '}
                 <a href={website} target="_blank" rel="noopener noreferrer">

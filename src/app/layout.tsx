@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
+import '@/app/globals.css';
 
 type Props = {
   children: ReactNode;
