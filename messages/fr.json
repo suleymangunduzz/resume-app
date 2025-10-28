@@ -33,10 +33,10 @@
   },
   "CommentsPage": {
     "meta": {
-      "title": "Commentaires des Utilisateurs - Portfolio",
-      "description": "Lisez ce que les utilisateurs ont à dire."
+      "title": "Commentaires des Collègues - Portfolio",
+      "description": "Lisez ce que les collègues ont à dire."
     },
-    "title": "Commentaires des Utilisateurs",
+    "title": "Commentaires des Collègues",
     "description": "Il n'y a pas encore de commentaires.",
     "form": {
       "title": "Laisser un Commentaire",

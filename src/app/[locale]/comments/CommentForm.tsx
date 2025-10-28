@@ -1,6 +1,6 @@
 import Form from 'next/form';
-
 import { useTranslations } from 'next-intl';
+
 import { addComment } from '@/app/[locale]/comments/actions';
 
 export default function CommentForm() {
@@ -11,7 +11,9 @@ export default function CommentForm() {
       action={addComment}
       className="max-w-lg mx-auto bg-white rounded-2xl shadow-md p-6 space-y-5"
     >
-      <h2 className="text-2xl font-semibold text-center">{t('title')}</h2>
+      <h2 className="text-2xl font-semibold text-center">
+        <a href="#have-a-comment">{t('title')}</a>
+      </h2>
 
       <div>
         <label
@@ -83,7 +85,7 @@ export default function CommentForm() {
 
       <button
         type="submit"
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition-colors"
+        className="cursor-pointer w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition-colors"
       >
         {t('submitCTAText')}
       </button>

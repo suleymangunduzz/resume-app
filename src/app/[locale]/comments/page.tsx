@@ -43,7 +43,7 @@ export default async function Page({ params }: PageProps) {
           show ? (
             <div
               key={title}
-              className="rounded-2xl bg-white p-6 shadow-md hover:shadow-lg transition"
+              className="rounded-2xl bg-white p-6 shadow-md hover:shadow-lg transition m-2"
             >
               <p className="text-gray-700 italic">“{description}”</p>
               <div className="mt-4">
