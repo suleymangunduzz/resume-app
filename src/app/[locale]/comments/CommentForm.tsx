@@ -23,6 +23,7 @@ export default function CommentForm() {
           {t('fields.name')} <span className="text-red-500">*</span>
         </label>
         <input
+          autoComplete="name"
           id="name"
           name="name"
           type="text"

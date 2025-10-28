@@ -18,7 +18,7 @@ export default function LanguageSelector() {
     <div className="relative inline-block text-left">
       <button
         onClick={toggleDropdown}
-        className="flex items-center gap-2 px-3 py-2 rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="cursor-pointer flex items-center gap-2 px-3 py-2 rounded bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
         aria-haspopup="true"
         aria-expanded={open}
         aria-label={`Change language (current: ${currentLabel})`}

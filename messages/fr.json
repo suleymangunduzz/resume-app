@@ -29,7 +29,11 @@
     "title": "Mon Expérience",
     "description": "Voici un résumé de mon expérience professionnelle.",
     "techStack": "Technologies Utilisées",
-    "present": "Présent"
+    "present": "Présent",
+    "month": "mois",
+    "months": "mois",
+    "year": "an",
+    "years": "ans"
   },
   "CommentsPage": {
     "meta": {

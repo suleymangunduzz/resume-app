@@ -29,7 +29,11 @@
     "title": "My Experience",
     "description": "Here is a summary of my professional experience.",
     "techStack": "Tech Stack",
-    "present": "Present"
+    "present": "Present",
+    "month": "month",
+    "months": "months",
+    "year": "year",
+    "years": "years"
   },
   "CommentsPage": {
     "meta": {
