@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import LanguageSelector from './LanguageSelector';
 
 type Tab = {
   _id: string;
@@ -55,6 +56,7 @@ export default async function LocaleLayout({ children, params }: Props) {
               ) : null,
             )}
         </ul>
+        <LanguageSelector />
       </nav>
       <main className="max-w-5xl mx-auto pt-[100px] pb-[100px]">
         {children}
