@@ -45,6 +45,9 @@
     "form": {
       "title": "Leave a Comment",
       "submitCTAText": "Submit Comment",
+      "successMessage": "Your comment has been submitted successfully!",
+      "errorMessage": "There was an error submitting your comment. Please try again.",
+      "submittingMessage": "Submitting your comment...",
       "fields": {
         "name": "Name",
         "title": "Job Title",

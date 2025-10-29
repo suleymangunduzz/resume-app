@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import CommentForm from '@/app/[locale]/comments/CommentForm';
+import CommentForm from '@/components/CommentForm';
 
 type Params = Promise<{ locale: string }>;
 

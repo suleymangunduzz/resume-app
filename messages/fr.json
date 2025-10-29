@@ -45,6 +45,9 @@
     "form": {
       "title": "Laisser un Commentaire",
       "submitCTAText": "Soumettre le Commentaire",
+      "successMessage": "Votre commentaire a été soumis avec succès !",
+      "errorMessage": "Une erreur est survenue lors de la soumission de votre commentaire. Veuillez réessayer.",
+      "submittingMessage": "Soumission de votre commentaire...",
       "fields": {
         "name": "Nom",
         "title": "Titre du Poste",
