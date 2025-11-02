@@ -1,0 +1,61 @@
+{
+  "Shared": {
+    "nav": {
+      "title": "Mon Portfolio",
+      "comments": "Commentaires",
+      "about": "À propos",
+      "experiences": "Expériences"
+    },
+    "footer": {
+      "text": "© {year} {name} Portfolio. Tous droits réservés."
+    }
+  },
+  "AboutPage": {
+    "meta": {
+      "title": "À propos de moi - Portfolio",
+      "description": "Ceci est le site portfolio."
+    },
+    "title": "À propos de moi",
+    "helloText": "C'est moi, {name}!",
+    "description": "Je suis un ingénieur logiciel qui vit au Luxembourg depuis un certain temps. Je crois que l'apprentissage n'a pas de fin et je suis toujours prêt à apprendre de nouvelles choses et à travailler dur pour améliorer mes compétences.",
+    "contactMe": "Vous pouvez me contacter via <link>LinkedIn</link>",
+    "myGitHub": "Mon <link>Profil</link> GitHub"
+  },
+  "ExperiencesPage": {
+    "meta": {
+      "title": "Mon Expérience - Portfolio",
+      "description": "Un résumé de mon expérience professionnelle."
+    },
+    "title": "Mon Expérience",
+    "description": "Voici un résumé de mon expérience professionnelle.",
+    "techStack": "Technologies Utilisées",
+    "present": "Présent",
+    "month": "mois",
+    "months": "mois",
+    "year": "an",
+    "years": "ans"
+  },
+  "CommentsPage": {
+    "meta": {
+      "title": "Commentaires des Collègues - Portfolio",
+      "description": "Lisez ce que les collègues ont à dire."
+    },
+    "title": "Commentaires des Collègues",
+    "description": "Il n'y a pas encore de commentaires.",
+    "form": {
+      "title": "Laisser un Commentaire",
+      "submitCTAText": "Soumettre le Commentaire",
+      "successMessage": "Votre commentaire a été soumis avec succès !",
+      "errorMessage": "Une erreur est survenue lors de la soumission de votre commentaire. Veuillez réessayer.",
+      "submittingMessage": "Soumission de votre commentaire...",
+      "fields": {
+        "name": "Nom",
+        "title": "Titre du Poste",
+        "titlePlaceholder": "ex. Ingénieur Logiciel",
+        "companyName": "Nom de l'Entreprise",
+        "description": "Description",
+        "descriptionPlaceholder": "Écrivez votre commentaire ici..."
+      }
+    }
+  }
+}

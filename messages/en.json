@@ -1,0 +1,61 @@
+{
+  "Shared": {
+    "nav": {
+      "title": "My Portolio",
+      "comments": "Comments",
+      "about": "About",
+      "experiences": "Experiences"
+    },
+    "footer": {
+      "text": "© {year} {name} Portfolio. All rights reserved."
+    }
+  },
+  "AboutPage": {
+    "meta": {
+      "title": "About me - Portfolio",
+      "description": "This is the portfolio website."
+    },
+    "title": "About me",
+    "helloText": "It's me, {name}!",
+    "description": "I am a Software Engineer who lives in Luxembourg for a while. I believe that learning has no end and I am always willing to learn about new things and working hard to improve my skills.",
+    "contactMe": "You can contact me via <link>LinkedIn</link>",
+    "myGitHub": "My GitHub <link>Profile</link>"
+  },
+  "ExperiencesPage": {
+    "meta": {
+      "title": "My Experience - Portfolio",
+      "description": "A summary of my professional experience."
+    },
+    "title": "My Experience",
+    "description": "Here is a summary of my professional experience.",
+    "techStack": "Tech Stack",
+    "present": "Present",
+    "month": "month",
+    "months": "months",
+    "year": "year",
+    "years": "years"
+  },
+  "CommentsPage": {
+    "meta": {
+      "title": "User Comments - Portfolio",
+      "description": "Read what users have to say."
+    },
+    "title": "Testimonials",
+    "description": "There are no comments yet.",
+    "form": {
+      "title": "Leave a Comment",
+      "submitCTAText": "Submit Comment",
+      "successMessage": "Your comment has been submitted successfully!",
+      "errorMessage": "There was an error submitting your comment. Please try again.",
+      "submittingMessage": "Submitting your comment...",
+      "fields": {
+        "name": "Name",
+        "title": "Job Title",
+        "titlePlaceholder": "e.g. Software Engineer",
+        "companyName": "Company Name",
+        "description": "Description",
+        "descriptionPlaceholder": "Write your comment here..."
+      }
+    }
+  }
+}
