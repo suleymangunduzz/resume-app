@@ -2,9 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { usePathname } from '@/i18n/navigation';
 
 export default function MobileMenuToggle() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (!open) return;
+    const menu = document.getElementById('mobileMenu');
+    if (menu) {
+      menu.classList.add('max-h-0');
+      menu.classList.remove('max-h-[400px]');
+    }
+    setOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const menu = document.getElementById('mobileMenu');
