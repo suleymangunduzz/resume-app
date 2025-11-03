@@ -37,7 +37,7 @@ export default async function Header({ locale }: Props) {
     .sort((a, b) => a.order - b.order);
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-[var(--header-bg)] backdrop-blur-md shadow-sm border-b border-[var(--header-border)]">
+    <nav className="fixed top-0 z-50 w-full bg-[var(--header-bg)] backdrop-blur-md shadow-sm border-b border-[var(--header-border)] h-[var(--header-height)]">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Left: title */}
         <h1 className="text-xl font-bold tracking-tight text-[var(--header-text)]">
@@ -46,17 +46,28 @@ export default async function Header({ locale }: Props) {
 
         {/* Desktop links */}
         <ul className="hidden md:flex gap-6">
-          {visibleTabs.map(({ key, path, displayText }) => (
-            <li key={key}>
-              <Link
-                href={path}
-                prefetch
-                className="text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
+          {visibleTabs.map(({ key, path, displayText }) =>
+            key === 'download-resume' ? (
+              <a
+                key={key}
+                href="/files/Suleyman-GUNDUZ-CV.pdf"
+                download
+                className="block text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
               >
                 {translationMap[key] || displayText}
-              </Link>
-            </li>
-          ))}
+              </a>
+            ) : (
+              <li key={key}>
+                <Link
+                  href={path}
+                  prefetch
+                  className="text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
+                >
+                  {translationMap[key] || displayText}
+                </Link>
+              </li>
+            ),
+          )}
         </ul>
 
         {/* Right side: lang + menu toggle */}

@@ -20,12 +20,14 @@ export default async function LocaleLayout({ children, params }: Props) {
   const t = await getTranslations({ locale, namespace: 'Shared' });
 
   return (
-    <section className="bg-[var(--page-bg)] min-h-screen flex flex-col">
+    <section className="bg-[var(--page-bg)] min-h-dvh flex flex-col">
       <Header locale={locale} />
 
-      <main className="flex-1 max-w-5xl mx-auto pt-[100px]">{children}</main>
+      <main className="pt-[calc(var(--header-height)+16px)] pb-[var(--footer-height)] overflow-y-auto">
+        {children}
+      </main>
 
-      <footer className="text-center py-6 text-sm text-[var(--footer-text)] border-t border-[var(--footer-text)] bg-[var(--footer-bg)] backdrop-blur-md">
+      <footer className="h-[var(--footer-height)] text-center py-6 text-sm text-[var(--footer-text)] border-t border-[var(--footer-text)] bg-[var(--footer-bg)] backdrop-blur-md mt-auto">
         {t.rich('footer.text', {
           year: new Date().getFullYear(),
           name: 'Süleyman GÜNDÜZ',

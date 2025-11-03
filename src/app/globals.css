@@ -2,6 +2,9 @@
 
 /* Light theme */
 :root {
+  --header-height: 72px;
+  --footer-height: 72px;
+
   --icon-btn-bg: transparent;
   --icon-btn-hover-bg: rgba(243, 244, 246, 1); /* gray-100 */
   --icon-btn-color: #111827; /* gray-900 */
