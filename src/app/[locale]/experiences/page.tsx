@@ -75,8 +75,12 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <section>
-      <h1 className="text-3xl font-semibold text-center mb-4">{t('title')}</h1>
-      <p className="text-center text-gray-600 mb-10">{t('description')}</p>
+      <h1 className="text-3xl font-semibold text-center mb-4 text-[var(--card-text)]">
+        {t('title')}
+      </h1>
+      <p className="text-center mb-2 md:mb-10 text-[var(--card-subtext)] px-4">
+        {t('description')}
+      </p>
 
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3 md:gap-4 lg:gap-6">
         {experiences
@@ -96,33 +100,33 @@ export default async function Page({ params }: PageProps) {
             }) => (
               <div
                 key={id}
-                className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 m-3 lg:m-0"
+                className="rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 m-3 lg:m-0 bg-[var(--card-bg)] hover:bg-[var(--card-hover)]"
               >
                 <div className="flex flex-col h-full justify-between">
                   <div>
-                    <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-600 transition-colors">
+                    <h2 className="text-xl font-semibold text-[var(--card-text)] hover:text-[var(--card-link)] transition-colors">
                       {title} at{' '}
                       <a
                         href={website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        className="hover:underline text-[var(--card-link)]"
                       >
                         {companyName}
                       </a>
                     </h2>
-                    <h4 className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    <h4 className="text-sm mt-1 text-[var(--card-subtext)]">
                       {location} |{' '}
                       {formatDuration(beginDate, endDate, stillWorking, t)}
                     </h4>
                   </div>
 
-                  <p className="text-gray-700 dark:text-gray-300 mt-4 italic">
+                  <p className="mt-4 italic text-[var(--card-subtext)]">
                     {description}
                   </p>
 
                   {techStack.length > 0 && (
-                    <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                    <p className="mt-4 text-sm text-[var(--card-subtext)]">
                       <strong>{t('techStack')}:</strong> {techStack.join(', ')}
                     </p>
                   )}

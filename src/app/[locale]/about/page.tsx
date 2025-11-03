@@ -17,9 +17,10 @@ export default function Page() {
 
   return (
     <section className="text-center px-4">
-      <h1 className="text-3xl md:text-5xl font-bold mb-4">
+      <h1 className="text-3xl md:text-5xl font-bold mb-4 text-[var(--about-heading)]">
         {`${t('helloText', { name: 'Sulo' })} 👋`}
       </h1>
+
       <Image
         src="/images/profile.jpg"
         alt="profile picture"
@@ -27,31 +28,34 @@ export default function Page() {
         width={150}
         height={150}
       />
-      <p className="text-md md:text-lg text-gray-600">{t('description')}</p>
-      <br />
-      <p className="text-md md:text-lg text-gray-600">
+
+      <p className="text-md md:text-lg mb-4 text-[var(--about-text)]">
+        {t('description')}
+      </p>
+
+      <p className="text-md md:text-lg mb-4 text-[var(--about-text)]">
         {t.rich('contactMe', {
           link: (children) => (
             <a
               href="https://www.linkedin.com/in/gunduzsuleyman/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline"
+              className="underline text-[var(--about-link)]"
             >
               {children}
             </a>
           ),
         })}
       </p>
-      <br />
-      <p className="text-md md:text-lg text-gray-600">
+
+      <p className="text-md md:text-lg text-[var(--about-text)]">
         {t.rich('myGitHub', {
           link: (children) => (
             <a
               href="https://github.com/suleymangunduzz"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline"
+              className="underline text-[var(--about-link)]"
             >
               {children}
             </a>

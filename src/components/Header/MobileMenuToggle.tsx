@@ -9,6 +9,7 @@ export default function MobileMenuToggle() {
   useEffect(() => {
     const menu = document.getElementById('mobileMenu');
     if (!menu) return;
+
     if (open) {
       menu.classList.remove('max-h-0');
       menu.classList.add('max-h-[400px]');
@@ -20,9 +21,9 @@ export default function MobileMenuToggle() {
 
   return (
     <button
-      className="md:hidden p-2 rounded hover:bg-gray-100 transition"
       onClick={() => setOpen((prev) => !prev)}
       aria-label={open ? 'Close menu' : 'Open menu'}
+      className="md:hidden p-2 rounded transition-colors bg-[var(--icon-btn-bg)] hover:bg-[var(--icon-btn-hover-bg)] text-[var(--icon-btn-color)]"
     >
       {open ? <X size={22} /> : <Menu size={22} />}
     </button>
