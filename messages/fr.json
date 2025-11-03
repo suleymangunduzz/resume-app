@@ -4,7 +4,8 @@
       "title": "Mon Portfolio",
       "comments": "Commentaires",
       "about": "À propos",
-      "experiences": "Expériences"
+      "experiences": "Expériences",
+      "downloadResume": "Télécharger le CV"
     },
     "footer": {
       "text": "© {year} {name} Portfolio. Tous droits réservés."

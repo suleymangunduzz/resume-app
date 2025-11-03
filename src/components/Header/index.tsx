@@ -29,6 +29,7 @@ export default async function Header({ locale }: Props) {
     comments: t('nav.comments'),
     experiences: t('nav.experiences'),
     about: t('nav.about'),
+    'download-resume': t('nav.downloadResume'),
   } as const;
 
   const visibleTabs = tabs
@@ -72,17 +73,28 @@ export default async function Header({ locale }: Props) {
         className="md:hidden max-h-0 overflow-hidden transition-all duration-300 bg-[var(--header-bg)] backdrop-blur-md shadow-md border-t border-[var(--header-border)]"
       >
         <ul className="flex flex-col items-center gap-4 py-4">
-          {visibleTabs.map(({ key, path, displayText }) => (
-            <li key={key}>
-              <Link
-                href={path}
-                prefetch
+          {visibleTabs.map(({ key, path, displayText }) =>
+            key === 'download-resume' ? (
+              <a
+                key={key}
+                href="/files/Suleyman-GUNDUZ-CV.pdf"
+                download
                 className="block text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
               >
                 {translationMap[key] || displayText}
-              </Link>
-            </li>
-          ))}
+              </a>
+            ) : (
+              <li key={key}>
+                <Link
+                  href={path}
+                  prefetch
+                  className="block text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
+                >
+                  {translationMap[key] || displayText}
+                </Link>
+              </li>
+            ),
+          )}
         </ul>
       </div>
     </nav>

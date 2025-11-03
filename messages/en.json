@@ -4,7 +4,8 @@
       "title": "My Portolio",
       "comments": "Comments",
       "about": "About",
-      "experiences": "Experiences"
+      "experiences": "Experiences",
+      "downloadResume": "Download CV"
     },
     "footer": {
       "text": "© {year} {name} Portfolio. All rights reserved."
