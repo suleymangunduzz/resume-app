@@ -78,7 +78,7 @@ export default async function Page({ params }: PageProps) {
       <h1 className="text-3xl font-semibold text-center mb-4 text-[var(--card-text)]">
         {t('title')}
       </h1>
-      <p className="text-center mb-10 text-[var(--card-subtext)]">
+      <p className="text-center mb-2 md:mb-10 text-[var(--card-subtext)] px-4">
         {t('description')}
       </p>
 

@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import LanguageSelector from '@/components/LanguageSelector';
 import MobileMenuToggle from '@/components/Header/MobileMenuToggle';
-import ThemeToggle from '../ThemeToggle';
+import ThemeToggle from '@/components/ThemeToggle';
 
 type Tab = {
   _id: string;
