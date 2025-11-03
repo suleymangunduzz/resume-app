@@ -37,18 +37,25 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <section>
-      <h2 className="text-3xl font-semibold mb-6 text-center">{t('title')}</h2>
+      <h2 className="text-3xl font-semibold mb-6 text-center text-[var(--card-text)]">
+        {t('title')}
+      </h2>
+
       <div className="grid gap-6 sm:grid-cols-2 mb-6">
         {commentsData.map(({ description, name, title, companyName, show }) =>
           show ? (
             <div
               key={title}
-              className="rounded-2xl bg-white p-6 shadow-md hover:shadow-lg transition m-2"
+              className="rounded-2xl p-6 shadow-md hover:shadow-lg transition m-2 bg-[var(--card-bg)] hover:bg-[var(--card-hover)]"
             >
-              <p className="text-gray-700 italic">“{description}”</p>
+              <p className="italic text-[var(--card-subtext)]">
+                “{description}”
+              </p>
               <div className="mt-4">
-                <h3 className="font-semibold text-gray-900">{name}</h3>
-                <p className="text-sm text-gray-500">
+                <h3 className="font-semibold text-[var(--card-text)]">
+                  {name}
+                </h3>
+                <p className="text-sm text-[var(--card-subtext)]">
                   {title} at {companyName}
                 </p>
               </div>
@@ -56,9 +63,11 @@ export default async function Page({ params }: PageProps) {
           ) : null,
         )}
       </div>
+
       <div>
-        <hr className="my-10" />
+        <hr className="my-10 border-[var(--card-subtext)]" />
       </div>
+
       <CommentForm />
     </section>
   );

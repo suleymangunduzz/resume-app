@@ -1,1 +1,71 @@
 @import 'tailwindcss';
+
+/* Light theme */
+:root {
+  --icon-btn-bg: transparent;
+  --icon-btn-hover-bg: rgba(243, 244, 246, 1); /* gray-100 */
+  --icon-btn-color: #111827; /* gray-900 */
+
+  --header-bg: rgba(255, 255, 255, 0.7);
+  --header-text: #4b5563;
+  --header-text-hover: #111827;
+  --header-border: rgba(0, 0, 0, 0.05);
+
+  --card-bg: #ffffff;
+  --card-text: #111827; /* dark text */
+  --card-subtext: #6b7280; /* gray-500 / secondary text */
+  --card-link: #2563eb; /* blue-600 */
+  --card-hover: #f3f4f6; /* light hover bg */
+
+  --form-bg: var(--card-bg);
+  --form-text: var(--card-text);
+  --form-subtext: var(--card-subtext);
+  --form-border: #d1d5db; /* gray-300 */
+  --form-border-focus: #2563eb; /* blue-600 */
+  --form-btn-bg: #2563eb; /* blue-600 */
+  --form-btn-hover-bg: #1e40af; /* blue-700 */
+  --form-btn-text: #ffffff;
+
+  --about-heading: #111827; /* dark heading */
+  --about-text: #4b5563; /* gray-600 */
+  --about-link: #2563eb; /* blue-600 */
+
+  --page-bg: #ffffff;
+  --footer-bg: rgba(255, 255, 255, 0.7);
+  --footer-text: #6b7280; /* gray-500 */
+}
+
+/* Dark theme */
+[data-theme='dark'] {
+  --icon-btn-bg: transparent;
+  --icon-btn-hover-bg: rgba(55, 65, 81, 1); /* gray-700 */
+  --icon-btn-color: #f9fafb; /* gray-50 */
+
+  --header-bg: rgba(17, 17, 17, 0.7);
+  --header-text: #d1d5db;
+  --header-text-hover: #f9fafb;
+  --header-border: rgba(255, 255, 255, 0.1);
+
+  --card-bg: #1f2937; /* gray-800 */
+  --card-text: #f9fafb; /* light text */
+  --card-subtext: #d1d5db; /* gray-300 */
+  --card-link: #60a5fa; /* blue-400 */
+  --card-hover: #374151; /* dark hover bg */
+
+  --form-bg: var(--card-bg);
+  --form-text: var(--card-text);
+  --form-subtext: var(--card-subtext);
+  --form-border: #374151; /* gray-700 */
+  --form-border-focus: #60a5fa; /* blue-400 */
+  --form-btn-bg: #3b82f6; /* blue-500 */
+  --form-btn-hover-bg: #2563eb; /* blue-600 */
+  --form-btn-text: #f9fafb;
+
+  --about-heading: #f9fafb; /* light heading */
+  --about-text: #d1d5db; /* gray-300 */
+  --about-link: #60a5fa; /* blue-400 */
+
+  --page-bg: #111827;
+  --footer-bg: rgba(17, 17, 17, 0.7);
+  --footer-text: #9ca3af; /* gray-400 */
+}

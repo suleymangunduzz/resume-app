@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import LanguageSelector from '@/components/LanguageSelector';
 import MobileMenuToggle from '@/components/Header/MobileMenuToggle';
+import ThemeToggle from '../ThemeToggle';
 
 type Tab = {
   _id: string;
@@ -35,10 +36,12 @@ export default async function Header({ locale }: Props) {
     .sort((a, b) => a.order - b.order);
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white/70 backdrop-blur-md shadow-sm">
+    <nav className="fixed top-0 z-50 w-full bg-[var(--header-bg)] backdrop-blur-md shadow-sm border-b border-[var(--header-border)]">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Left: title */}
-        <h1 className="text-xl font-bold tracking-tight">{t('nav.title')}</h1>
+        <h1 className="text-xl font-bold tracking-tight text-[var(--header-text)]">
+          {t('nav.title')}
+        </h1>
 
         {/* Desktop links */}
         <ul className="hidden md:flex gap-6">
@@ -47,7 +50,7 @@ export default async function Header({ locale }: Props) {
               <Link
                 href={path}
                 prefetch
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
               >
                 {translationMap[key] || displayText}
               </Link>
@@ -58,14 +61,15 @@ export default async function Header({ locale }: Props) {
         {/* Right side: lang + menu toggle */}
         <div className="flex items-center gap-3">
           <LanguageSelector />
-          <MobileMenuToggle /> {/* just toggles a CSS class */}
+          <ThemeToggle />
+          <MobileMenuToggle />
         </div>
       </div>
 
-      {/* Mobile menu — always rendered server-side */}
+      {/* Mobile menu */}
       <div
         id="mobileMenu"
-        className="md:hidden max-h-0 overflow-hidden transition-all duration-300 bg-white/90 backdrop-blur-md shadow-md border-t"
+        className="md:hidden max-h-0 overflow-hidden transition-all duration-300 bg-[var(--header-bg)] backdrop-blur-md shadow-md border-t border-[var(--header-border)]"
       >
         <ul className="flex flex-col items-center gap-4 py-4">
           {visibleTabs.map(({ key, path, displayText }) => (
@@ -73,7 +77,7 @@ export default async function Header({ locale }: Props) {
               <Link
                 href={path}
                 prefetch
-                className="block text-gray-700 hover:text-blue-600 transition-colors"
+                className="block text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
               >
                 {translationMap[key] || displayText}
               </Link>
