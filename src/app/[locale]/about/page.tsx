@@ -22,7 +22,7 @@ export default function Page() {
       </h1>
 
       <Image
-        src="/images/profile.jpg"
+        src="/images/profile.jpeg"
         alt="profile picture"
         className="mx-auto rounded-full mb-6"
         width={150}
