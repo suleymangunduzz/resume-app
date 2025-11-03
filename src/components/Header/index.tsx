@@ -81,7 +81,7 @@ export default async function Header({ locale }: Props) {
       {/* Mobile menu */}
       <div
         id="mobileMenu"
-        className="md:hidden max-h-0 overflow-hidden transition-all duration-300 bg-[var(--header-bg)] backdrop-blur-md shadow-md border-t border-[var(--header-border)]"
+        className="md:hidden max-h-0 overflow-hidden transition-all duration-300 bg-[var(--mobile-menu-bg)] backdrop-blur-md shadow-md border-t border-[var(--header-border)]"
       >
         <ul className="flex flex-col items-center gap-4 py-4">
           {visibleTabs.map(({ key, path, displayText }) =>

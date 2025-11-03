@@ -13,6 +13,7 @@
   --header-text: #4b5563;
   --header-text-hover: #111827;
   --header-border: rgba(0, 0, 0, 0.05);
+  --mobile-menu-bg: rgba(255, 255, 255, 0.95);
 
   --card-bg: #ffffff;
   --card-text: #111827; /* dark text */
@@ -48,6 +49,7 @@
   --header-text: #d1d5db;
   --header-text-hover: #f9fafb;
   --header-border: rgba(255, 255, 255, 0.1);
+  --mobile-menu-bg: rgba(17, 17, 17, 0.9);
 
   --card-bg: #1f2937; /* gray-800 */
   --card-text: #f9fafb; /* light text */
