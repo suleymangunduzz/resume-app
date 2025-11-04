@@ -29,7 +29,7 @@ export default function Page() {
         height={150}
       />
 
-      <p className="text-md md:text-lg mb-4 text-[var(--about-text)]">
+      <p className="text-md md:text-lg mb-4 text-[var(--about-text)] max-w-[600px] mx-auto">
         {t('description')}
       </p>
 
