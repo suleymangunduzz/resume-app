@@ -12,7 +12,7 @@ export default function LanguageSelector() {
 
   const currentLocale = (params?.locale as string) || i18n.defaultLocale;
   const currentLabel = i18n.localeMeta[currentLocale].label;
-  const toggleDropdown = () => setOpen(!open);
+  const toggleDropdown = () => setOpen((prev) => !prev);
 
   return (
     <div className="relative inline-block text-left">

@@ -23,7 +23,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <section className="bg-[var(--page-bg)] min-h-dvh flex flex-col">
       <Header locale={locale} />
 
-      <main className="pt-[calc(var(--header-height)+16px)] pb-[var(--footer-height)] overflow-y-auto">
+      <main className="pt-[calc(var(--header-height)+16px)] overflow-y-auto">
         {children}
       </main>
 

@@ -40,9 +40,11 @@ export default async function Header({ locale }: Props) {
     <nav className="fixed top-0 z-50 w-full bg-[var(--header-bg)] backdrop-blur-md shadow-sm border-b border-[var(--header-border)] h-[var(--header-height)]">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Left: title */}
-        <h1 className="text-xl font-bold tracking-tight text-[var(--header-text)]">
-          {t('nav.title')}
-        </h1>
+        <Link href="/about" prefetch>
+          <h1 className="text-xl font-bold tracking-tight text-[var(--header-text)]">
+            {t('nav.title')}
+          </h1>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden md:flex gap-6">
