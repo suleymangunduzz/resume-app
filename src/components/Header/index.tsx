@@ -19,11 +19,16 @@ type Props = {
 
 export default async function Header({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'Shared' });
+  let tabs: Array<Tab> = [];
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/tabs`, {
-    next: { revalidate: 60 },
-  });
-  const tabs: Array<Tab> = await res.json();
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/tabs`, {
+      next: { revalidate: 60 },
+    });
+    tabs = await res.json();
+  } catch (error) {
+    tabs = [];
+  }
 
   const translationMap = {
     comments: t('nav.comments'),

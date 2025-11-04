@@ -67,11 +67,16 @@ function formatDuration(
 export default async function Page({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'ExperiencesPage' });
+  let experiences: Array<Experience> = [];
 
-  const experienceData = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/experience`,
-  );
-  const experiences: Array<Experience> = await experienceData.json();
+  try {
+    const experienceData = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/experience`,
+    );
+    experiences = await experienceData.json();
+  } catch (error) {
+    experiences = [];
+  }
 
   return (
     <section>

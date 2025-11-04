@@ -29,11 +29,16 @@ export async function generateMetadata({ params }: { params: Params }) {
 export default async function Page({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'CommentsPage' });
+  let commentsData: ReadonlyArray<Comment> = [];
 
-  const comments = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments`,
-  );
-  const commentsData: ReadonlyArray<Comment> = await comments.json();
+  try {
+    const comments = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments`,
+    );
+    commentsData = await comments.json();
+  } catch (error) {
+    commentsData = [];
+  }
 
   return (
     <section>
