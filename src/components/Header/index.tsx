@@ -50,14 +50,15 @@ export default async function Header({ locale }: Props) {
         <ul className="hidden md:flex gap-6">
           {visibleTabs.map(({ key, path, displayText }) =>
             key === 'download-resume' ? (
-              <a
-                key={key}
-                href="/files/Suleyman-GUNDUZ-CV.pdf"
-                download
-                className="block text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
-              >
-                {translationMap[key] || displayText}
-              </a>
+              <li key={key}>
+                <a
+                  href="/files/Suleyman-GUNDUZ-CV.pdf"
+                  download
+                  className="block text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
+                >
+                  {translationMap[key] || displayText}
+                </a>
+              </li>
             ) : (
               <li key={key}>
                 <Link
@@ -88,14 +89,15 @@ export default async function Header({ locale }: Props) {
         <ul className="flex flex-col items-center gap-4 py-4">
           {visibleTabs.map(({ key, path, displayText }) =>
             key === 'download-resume' ? (
-              <a
-                key={key}
-                href="/files/Suleyman-GUNDUZ-CV.pdf"
-                download
-                className="block text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
-              >
-                {translationMap[key] || displayText}
-              </a>
+              <li key={key}>
+                <a
+                  href="/files/Suleyman-GUNDUZ-CV.pdf"
+                  download
+                  className="block text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
+                >
+                  {translationMap[key] || displayText}
+                </a>
+              </li>
             ) : (
               <li key={key}>
                 <Link

@@ -19,6 +19,7 @@ export default function ThemeToggleClient({ initialTheme }: Props) {
   return (
     <button
       onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
+      aria-label="Toggle theme"
       className="flex items-center gap-2 rounded p-2 transition-colors bg-[var(--icon-btn-bg)] hover:bg-[var(--icon-btn-hover-bg)] text-[var(--icon-btn-color)]"
     >
       {theme === 'dark' ? (
