@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { cookies } from 'next/headers';
-import { NextIntlClientProvider } from 'next-intl';
 
 import '@/app/globals.css';
 
@@ -16,9 +15,7 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang={locale} data-theme={initialTheme}>
-      <NextIntlClientProvider>
-        <body className="bg-gray-50 text-gray-900">{children}</body>
-      </NextIntlClientProvider>
+      <body className="bg-gray-50 text-gray-900">{children}</body>
     </html>
   );
 }
