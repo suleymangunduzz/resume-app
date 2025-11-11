@@ -47,6 +47,7 @@
       "buttonTextOriginal": "Show original comment",
       "form": {
         "label": "Translate comment to:",
+        "selectLanguage": "Select language",
         "placeholder": "French, Spanish, German...",
         "buttonText": "Translate",
         "buttonTextTranslating": "Translating..."

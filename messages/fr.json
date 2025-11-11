@@ -47,6 +47,7 @@
       "buttonTextOriginal": "Afficher le commentaire original",
       "form": {
         "label": "Traduire le commentaire en:",
+        "selectLanguage": "Sélectionner la langue",
         "placeholder": "Français, Espagnol, Allemand...",
         "buttonText": "Traduire",
         "buttonTextTranslating": "Traduction en cours..."
