@@ -1,9 +1,10 @@
 import { getTranslations } from 'next-intl/server';
 import CommentForm from '@/components/CommentForm';
+import CommentCard from '@/app/[locale]/comments/CommentCard';
 
 type Params = Promise<{ locale: string }>;
 
-type Comment = {
+export type Comment = {
   _id: string;
   description: string;
   companyName: string;
@@ -46,25 +47,10 @@ export default async function Page({ params }: PageProps) {
         {t('title')}
       </h2>
 
-      <div className="grid gap-6 sm:grid-cols-2 mb-6">
-        {commentsData.map(({ description, name, title, companyName, show }) =>
-          show ? (
-            <div
-              key={title}
-              className="rounded-2xl p-6 shadow-md hover:shadow-lg transition m-2 bg-[var(--card-bg)] hover:bg-[var(--card-hover)]"
-            >
-              <p className="italic text-[var(--card-subtext)]">
-                “{description}”
-              </p>
-              <div className="mt-4">
-                <h3 className="font-semibold text-[var(--card-text)]">
-                  {name}
-                </h3>
-                <p className="text-sm text-[var(--card-subtext)]">
-                  {title} at {companyName}
-                </p>
-              </div>
-            </div>
+      <div className="grid gap-6 sm:grid-cols-2 mb-6 p-4">
+        {commentsData.map((comment) =>
+          comment.show ? (
+            <CommentCard key={comment._id} comment={comment} />
           ) : null,
         )}
       </div>

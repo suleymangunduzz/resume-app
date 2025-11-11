@@ -43,6 +43,15 @@
     },
     "title": "Testimonials",
     "description": "There are no comments yet.",
+    "CommentCard": {
+      "buttonTextOriginal": "Show original comment",
+      "form": {
+        "label": "Translate comment to:",
+        "placeholder": "French, Spanish, German...",
+        "buttonText": "Translate",
+        "buttonTextTranslating": "Translating..."
+      }
+    },
     "form": {
       "title": "Leave a Comment",
       "submitCTAText": "Submit Comment",

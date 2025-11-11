@@ -43,6 +43,15 @@
     },
     "title": "Commentaires des Collègues",
     "description": "Il n'y a pas encore de commentaires.",
+    "CommentCard": {
+      "buttonTextOriginal": "Afficher le commentaire original",
+      "form": {
+        "label": "Traduire le commentaire en:",
+        "placeholder": "Français, Espagnol, Allemand...",
+        "buttonText": "Traduire",
+        "buttonTextTranslating": "Traduction en cours..."
+      }
+    },
     "form": {
       "title": "Laisser un Commentaire",
       "submitCTAText": "Soumettre le Commentaire",
