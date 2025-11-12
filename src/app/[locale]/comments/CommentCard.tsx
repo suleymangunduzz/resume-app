@@ -66,6 +66,10 @@ const CommentCard: FC<{ comment: Comment }> = ({ comment }) => {
         throw new Error(data.error || 'Translation failed');
       }
 
+      if (data.translated) {
+        setTranslatedText(data.translated);
+      }
+
       form.reset();
     } catch (error) {
       setError(error.message || 'An unknown error occurred');
