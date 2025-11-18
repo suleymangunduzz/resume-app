@@ -68,5 +68,15 @@
         "descriptionPlaceholder": "Écrivez votre commentaire ici..."
       }
     }
+  },
+  "ActivateCommentPage": {
+    "activatingMessage": "Activation de votre commentaire...",
+    "invalidOrMissingTokenMessage": "Jeton d'activation invalide ou manquant.",
+    "successMessage": "Votre commentaire a été activé avec succès !",
+    "activationFailedMessage": "L'activation a échoué.",
+    "errorMessage": "Une erreur est survenue lors de l'activation de votre commentaire. Le lien d'activation peut être invalide ou expiré.",
+    "goToCommentsButton": "Aller aux Commentaires",
+    "commentIsVisibleMessage": "Le commentaire est maintenant visible sur le site.",
+    "contactSupportMessage": "Veuillez contacter l'administrateur du site si vous pensez qu'il s'agit d'une erreur."
   }
 }

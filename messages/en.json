@@ -68,5 +68,15 @@
         "descriptionPlaceholder": "Write your comment here..."
       }
     }
+  },
+  "ActivateCommentPage": {
+    "activatingMessage": "Activating your comment...",
+    "invalidOrMissingTokenMessage": "Invalid or missing activation token.",
+    "successMessage": "Your comment has been activated successfully!",
+    "activationFailedMessage": "Activation has failed.",
+    "errorMessage": "There was an error activating your comment. The activation link may be invalid or expired.",
+    "goToCommentsButton": "Go to Comments",
+    "commentIsVisibleMessage": "The comment is now visible on the website.",
+    "contactSupportMessage": "Please contact the site administrator if you believe this is an error."
   }
 }
