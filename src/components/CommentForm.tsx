@@ -36,7 +36,6 @@ export default function CommentForm() {
         title: formData.get('title'),
         companyName: formData.get('companyName'),
         description: formData.get('description'),
-        show: process.env.NODE_ENV === 'development' ? true : false,
       }),
     });
 
