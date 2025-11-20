@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
 
 export default function ActivateCommentPage() {
   const searchParams = useSearchParams();
@@ -30,6 +30,7 @@ export default function ActivateCommentPage() {
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments/activate`,
           {
             method: 'PUT',
+            credentials: 'include',
             headers: {
               Authorization: `Bearer ${token}`,
             },

@@ -35,6 +35,7 @@ export default async function Page({ params }: PageProps) {
   try {
     const comments = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments`,
+      { credentials: 'include' },
     );
     commentsData = await comments.json();
   } catch (error) {
@@ -48,11 +49,9 @@ export default async function Page({ params }: PageProps) {
       </h2>
 
       <div className="grid gap-6 sm:grid-cols-2 mb-6 p-4">
-        {commentsData.map((comment) =>
-          comment.show ? (
-            <CommentCard key={comment._id} comment={comment} />
-          ) : null,
-        )}
+        {commentsData.map((comment) => (
+          <CommentCard key={comment._id} comment={comment} />
+        ))}
       </div>
 
       <div>

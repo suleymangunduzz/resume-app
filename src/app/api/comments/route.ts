@@ -8,6 +8,7 @@ export async function POST(request: Request) {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
       },
     );
 

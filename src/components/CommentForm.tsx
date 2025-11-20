@@ -31,6 +31,7 @@ export default function CommentForm() {
 
     const response = await fetch('/api/comments', {
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify({
         name: formData.get('name'),
         title: formData.get('title'),

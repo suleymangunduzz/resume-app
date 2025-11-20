@@ -23,6 +23,7 @@ export default async function Header({ locale }: Props) {
 
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/tabs`, {
+      credentials: 'include',
       next: { revalidate: 60 },
     });
     tabs = await res.json();
