@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_BASE_API_URL:
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:3001'
-        : 'https://resume-app-backend.vercel.app',
+        : 'https://api.suleymangunduz.me',
   },
 };
 
