@@ -56,6 +56,7 @@ const CommentCard: FC<{ comment: Comment }> = ({ comment }) => {
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify({ text: description, languageCode }),
         },
       );

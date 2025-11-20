@@ -72,6 +72,7 @@ export default async function Page({ params }: PageProps) {
   try {
     const experienceData = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API_URL}/experience`,
+      { credentials: 'include' },
     );
     experiences = await experienceData.json();
   } catch (error) {
