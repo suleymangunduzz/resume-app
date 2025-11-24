@@ -15,6 +15,8 @@ export default function AdminCommentsDashboard() {
   const [comments, setComments] = useState<Comment[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteCommentId, setDeleteCommentId] = useState<string | null>(null);
 
   async function fetchComments() {
     setLoading(true);
@@ -35,8 +37,6 @@ export default function AdminCommentsDashboard() {
   }
 
   async function toggleShow(commentId: string, current: boolean) {
-    return;
-    // TOOD: implement this function to toggle comment visibility
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments/${commentId}`,
@@ -50,18 +50,18 @@ export default function AdminCommentsDashboard() {
 
       if (!res.ok) throw new Error('Failed to update comment');
 
-      setComments((prev) =>
-        prev.map((c) => (c._id === commentId ? { ...c, show: !current } : c)),
-      );
+      fetchComments();
     } catch (err: any) {
       alert(err.message || 'Error updating comment');
     }
   }
 
-  async function deleteComment(commentId: string) {
+  async function deleteComment() {
+    if (!deleteCommentId) return;
+
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments/${commentId}`,
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments/${deleteCommentId}`,
         {
           method: 'DELETE',
           credentials: 'include',
@@ -69,7 +69,9 @@ export default function AdminCommentsDashboard() {
       );
       if (!res.ok) throw new Error('Failed to delete comment');
 
-      setComments((prev) => prev.filter((c) => c._id !== commentId));
+      fetchComments();
+      setShowDeleteModal(false);
+      setDeleteCommentId(null);
     } catch (err: any) {
       alert(err.message || 'Error deleting comment');
     }
@@ -84,6 +86,41 @@ export default function AdminCommentsDashboard() {
       className="p-6"
       style={{ background: 'var(--page-bg)', minHeight: '100vh' }}
     >
+      {showDeleteModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-xl shadow-xl p-6 max-w-sm w-full">
+            <form
+              method="dialog"
+              onSubmit={(event) => {
+                event.preventDefault();
+                deleteComment();
+              }}
+            >
+              <h3 className="font-bold text-lg mb-4 text-center">
+                Are you sure?
+              </h3>
+
+              <div className="flex gap-3 mt-4">
+                <button
+                  type="submit"
+                  className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition"
+                >
+                  Yes, delete
+                </button>
+
+                <button
+                  type="button"
+                  className="w-full bg-gray-200 py-2 rounded-md hover:bg-gray-300 transition"
+                  onClick={() => setShowDeleteModal(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       <h2 className="text-3xl font-semibold mb-6 text-center text-[var(--card-text)]">
         Admin Comments Dashboard
       </h2>
@@ -127,7 +164,10 @@ export default function AdminCommentsDashboard() {
               </button>
 
               <button
-                onClick={() => deleteComment(comment._id)}
+                onClick={() => {
+                  setDeleteCommentId(comment._id);
+                  setShowDeleteModal(true);
+                }}
                 className="px-3 py-1 rounded bg-red-600 hover:bg-red-700 text-white"
               >
                 Delete
