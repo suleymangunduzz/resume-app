@@ -11,16 +11,14 @@ export default function DashboardPage() {
   useEffect(() => {
     async function checkAuth() {
       try {
-        // Call your backend endpoint that requires admin auth
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/check`,
           {
-            credentials: 'include', // sends the HttpOnly cookie
+            credentials: 'include',
           },
         );
 
         if (!res.ok) {
-          // If not authenticated, redirect to login
           router.push('/admin/login');
         } else {
           setLoading(false);

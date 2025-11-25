@@ -5,7 +5,8 @@
       "comments": "Commentaires",
       "about": "À propos",
       "experiences": "Expériences",
-      "downloadResume": "Télécharger le CV"
+      "downloadResume": "Télécharger le CV",
+      "adminDashboard": "Tableau de Bord Admin"
     },
     "footer": {
       "text": "© {year} {name} Portfolio. Tous droits réservés."
