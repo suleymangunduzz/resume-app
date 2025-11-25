@@ -5,7 +5,8 @@
       "comments": "Comments",
       "about": "About",
       "experiences": "Experiences",
-      "downloadResume": "Download CV"
+      "downloadResume": "Download CV",
+      "adminDashboard": "Admin Dashboard"
     },
     "footer": {
       "text": "© {year} {name} Portfolio. All rights reserved."

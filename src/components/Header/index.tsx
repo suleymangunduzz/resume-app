@@ -1,4 +1,6 @@
 import { getTranslations } from 'next-intl/server';
+import { cookies } from 'next/headers';
+
 import { Link } from '@/i18n/navigation';
 import LanguageSelector from '@/components/LanguageSelector';
 import MobileMenuToggle from '@/components/Header/MobileMenuToggle';
@@ -18,6 +20,8 @@ type Props = {
 };
 
 export default async function Header({ locale }: Props) {
+  const cookieStore = await cookies();
+  const adminTokenCookie = cookieStore.get('admin_token')?.value || null;
   const t = await getTranslations({ locale, namespace: 'Shared' });
   let tabs: Array<Tab> = [];
 
@@ -38,10 +42,6 @@ export default async function Header({ locale }: Props) {
     'download-resume': t('nav.downloadResume'),
   } as const;
 
-  const visibleTabs = tabs
-    .filter((tab) => tab.isVisible)
-    .sort((a, b) => a.order - b.order);
-
   return (
     <nav className="fixed top-0 z-50 w-full bg-[var(--header-bg)] backdrop-blur-md shadow-sm border-b border-[var(--header-border)] h-[var(--header-height)]">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -54,7 +54,7 @@ export default async function Header({ locale }: Props) {
 
         {/* Desktop links */}
         <ul className="hidden md:flex gap-6">
-          {visibleTabs.map(({ key, path, displayText }) =>
+          {tabs.map(({ key, path, displayText }) =>
             key === 'download-resume' ? (
               <li key={key}>
                 <a
@@ -77,6 +77,17 @@ export default async function Header({ locale }: Props) {
               </li>
             ),
           )}
+          {adminTokenCookie && (
+            <li key="admin-dashboard-desktop">
+              <Link
+                href="/admin/dashboard"
+                prefetch
+                className="text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
+              >
+                {t('nav.adminDashboard')}
+              </Link>
+            </li>
+          )}
         </ul>
 
         {/* Right side: lang + menu toggle */}
@@ -93,7 +104,7 @@ export default async function Header({ locale }: Props) {
         className="md:hidden max-h-0 overflow-hidden transition-all duration-300 bg-[var(--mobile-menu-bg)] backdrop-blur-md shadow-md border-t border-[var(--header-border)]"
       >
         <ul className="flex flex-col items-center gap-4 py-4">
-          {visibleTabs.map(({ key, path, displayText }) =>
+          {tabs.map(({ key, path, displayText }) =>
             key === 'download-resume' ? (
               <li key={key}>
                 <a
@@ -115,6 +126,17 @@ export default async function Header({ locale }: Props) {
                 </Link>
               </li>
             ),
+          )}
+          {adminTokenCookie && (
+            <li key="admin-dashboard-mobile">
+              <Link
+                href="/admin/dashboard"
+                prefetch
+                className="block text-[var(--header-text)] hover:text-[var(--header-text-hover)] transition-colors"
+              >
+                {t('nav.adminDashboard')}
+              </Link>
+            </li>
           )}
         </ul>
       </div>
