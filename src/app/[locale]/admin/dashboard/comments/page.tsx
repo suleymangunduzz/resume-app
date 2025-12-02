@@ -21,8 +21,11 @@ export default function AdminCommentsPage() {
     <div>
       <Link href="/admin/dashboard">
         <div className="flex items-center">
-          <ArrowLeft className="inline-block mr-2" size={24} />
-          <p className="font-bold">Back to Dashboard</p>
+          <ArrowLeft
+            className="inline-block mr-2 text-[var(--card-text)]"
+            size={24}
+          />
+          <p className="font-bold text-[var(--card-text)]">Back to Dashboard</p>
         </div>
       </Link>
       <AdminCommentsDashboard />
