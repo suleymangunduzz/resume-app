@@ -7,11 +7,7 @@ import { useAuthGuard } from '@/hooks/useAuthGuard';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
 
-type Props = {
-  params: { id: string };
-};
-
-export default function EditExperiencePage({ params }: Props) {
+export default function EditExperiencePage() {
   const { loading, isAuthenticated } = useAuthGuard();
   const { id: experienceId } = useParams();
 
