@@ -1,5 +1,6 @@
 'use client';
 
+import { Link } from '@/i18n/navigation';
 import { useEffect, useState } from 'react';
 
 export type Experience = {
@@ -171,6 +172,11 @@ export default function AdminExperiencesDashboard() {
               >
                 Delete
               </button>
+              <Link href={`/admin/dashboard/experiences/${exp._id}/edit`}>
+                <button className="px-3 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white">
+                  Edit
+                </button>
+              </Link>
             </div>
           </div>
         ))}
