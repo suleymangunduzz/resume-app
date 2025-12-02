@@ -2,76 +2,70 @@
 
 import { useEffect, useState } from 'react';
 
-import { Comment } from '@/app/[locale]/comments/page';
+export type Experience = {
+  _id: string;
+  companyName: string;
+  title: string;
+  description: string;
+  beginDate: string;
+  endDate: string;
+  stillWorking: boolean;
+  website: string;
+  techStack: string[];
+  location: string;
+  order: number;
+};
 
-export default function AdminCommentsDashboard() {
-  const [comments, setComments] = useState<Comment[]>([]);
+export default function AdminExperiencesDashboard() {
+  const [experiences, setExperiences] = useState<Experience[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [deleteCommentId, setDeleteCommentId] = useState<string | null>(null);
+  const [deleteExperienceId, setDeleteExperienceId] = useState<string | null>(
+    null,
+  );
 
-  async function fetchComments() {
+  async function fetchExperiences() {
     setLoading(true);
     setError('');
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments/all`,
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/experience`,
         { credentials: 'include' },
       );
-      if (!res.ok) throw new Error('Failed to fetch comments');
+      if (!res.ok) throw new Error('Failed to fetch experiences');
       const data = await res.json();
-      setComments(data);
+      setExperiences(data);
     } catch (err: any) {
-      setError(err.message || 'Error fetching comments');
+      setError(err.message || 'Error fetching experiences');
     } finally {
       setLoading(false);
     }
   }
 
-  async function toggleShow(commentId: string, current: boolean) {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments/${commentId}`,
-        {
-          method: 'PUT',
-          credentials: 'include',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ show: !current }),
-        },
-      );
-
-      if (!res.ok) throw new Error('Failed to update comment');
-
-      fetchComments();
-    } catch (err: any) {
-      alert(err.message || 'Error updating comment');
-    }
-  }
-
-  async function deleteComment() {
-    if (!deleteCommentId) return;
+  async function deleteExperience() {
+    if (!deleteExperienceId) return;
 
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/comments/${deleteCommentId}`,
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/experience/${deleteExperienceId}`,
         {
           method: 'DELETE',
           credentials: 'include',
         },
       );
-      if (!res.ok) throw new Error('Failed to delete comment');
+      if (!res.ok) throw new Error('Failed to delete experience');
 
-      fetchComments();
+      fetchExperiences();
       setShowDeleteModal(false);
-      setDeleteCommentId(null);
+      setDeleteExperienceId(null);
     } catch (err: any) {
-      alert(err.message || 'Error deleting comment');
+      alert(err.message || 'Error deleting experience');
     }
   }
 
   useEffect(() => {
-    fetchComments();
+    fetchExperiences();
   }, []);
 
   return (
@@ -79,6 +73,7 @@ export default function AdminCommentsDashboard() {
       className="p-6"
       style={{ background: 'var(--page-bg)', minHeight: '100vh' }}
     >
+      {/* DELETE MODAL */}
       {showDeleteModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white rounded-xl shadow-xl p-6 max-w-sm w-full">
@@ -86,11 +81,11 @@ export default function AdminCommentsDashboard() {
               method="dialog"
               onSubmit={(event) => {
                 event.preventDefault();
-                deleteComment();
+                deleteExperience();
               }}
             >
               <h3 className="font-bold text-lg mb-4 text-center">
-                Are you sure?
+                Delete this experience?
               </h3>
 
               <div className="flex gap-3 mt-4">
@@ -114,17 +109,19 @@ export default function AdminCommentsDashboard() {
         </div>
       )}
 
+      {/* PAGE TITLE */}
       <h2 className="text-3xl font-semibold mb-6 text-center text-[var(--card-text)]">
-        Admin Comments Dashboard
+        Admin Experiences Dashboard
       </h2>
 
-      {loading && <p>Loading comments...</p>}
+      {loading && <p>Loading experiences...</p>}
       {error && <p className="text-red-600">{error}</p>}
 
+      {/* GRID */}
       <div className="grid gap-6 sm:grid-cols-2">
-        {comments.map((comment) => (
+        {experiences.map((exp) => (
           <div
-            key={comment._id}
+            key={exp._id}
             className="p-4 rounded-xl shadow border hover:shadow-md transition"
             style={{
               background: 'var(--card-bg)',
@@ -132,33 +129,42 @@ export default function AdminCommentsDashboard() {
               borderColor: 'var(--card-border)',
             }}
           >
-            <h3 className="text-lg font-semibold">{comment.name}</h3>
+            <h3 className="text-lg font-semibold">{exp.title}</h3>
             <p className="text-sm text-[var(--card-subtext)]">
-              {comment.title}
+              {exp.companyName} • {exp.location}
             </p>
-            <p className="mt-2">{comment.description}</p>
-            <p className="mt-1 text-[var(--card-subtext)]">
-              {comment.companyName}
-            </p>
-            <p className="mt-1 text-sm">
-              Visible: {comment.show ? 'Yes' : 'No'}
+            <p className="text-sm text-[var(--card-subtext)]">
+              {exp.beginDate} – {exp.stillWorking ? 'Present' : exp.endDate}
             </p>
 
+            <p className="mt-2">{exp.description}</p>
+
+            {exp.website && (
+              <p className="mt-1">
+                <a
+                  href={exp.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--card-link)' }}
+                >
+                  Visit website
+                </a>
+              </p>
+            )}
+
+            {exp.techStack.length > 0 && (
+              <p className="mt-1 text-sm text-[var(--card-subtext)]">
+                Tech Stack: {exp.techStack.join(', ')}
+              </p>
+            )}
+
+            <p className="mt-1 text-sm">Order: {exp.order}</p>
+
+            {/* ACTION BUTTONS */}
             <div className="mt-4 flex gap-2">
               <button
-                onClick={() => toggleShow(comment._id, comment.show)}
-                className={`px-3 py-1 rounded text-white ${
-                  comment.show
-                    ? 'bg-yellow-500 hover:bg-yellow-600'
-                    : 'bg-green-600 hover:bg-green-700'
-                }`}
-              >
-                {comment.show ? 'Hide' : 'Activate'}
-              </button>
-
-              <button
                 onClick={() => {
-                  setDeleteCommentId(comment._id);
+                  setDeleteExperienceId(exp._id);
                   setShowDeleteModal(true);
                 }}
                 className="px-3 py-1 rounded bg-red-600 hover:bg-red-700 text-white"
@@ -169,12 +175,12 @@ export default function AdminCommentsDashboard() {
           </div>
         ))}
 
-        {comments.length === 0 && !loading && (
+        {experiences.length === 0 && !loading && (
           <p
             className="text-center col-span-full"
             style={{ color: 'var(--card-subtext)' }}
           >
-            No comments found.
+            No experiences found.
           </p>
         )}
       </div>

@@ -1,9 +1,10 @@
 'use client';
 
-import { useAuthGuard } from 'src/hooks/useAuthGuard';
-import AdminCommentsDashboard from './AdminCommentsDashboard';
-import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
+
+import { Link } from '@/i18n/navigation';
+import { useAuthGuard } from 'src/hooks/useAuthGuard';
+import AdminCommentsDashboard from '@/app/[locale]/admin/dashboard/comments/AdminCommentsDashboard';
 
 export default function AdminCommentsPage() {
   const { loading, isAuthenticated } = useAuthGuard();

@@ -6,7 +6,7 @@ type PageProps = {
   params: Params;
 };
 
-type Experience = {
+export type Experience = {
   _id: string;
   companyName: string;
   title: string;

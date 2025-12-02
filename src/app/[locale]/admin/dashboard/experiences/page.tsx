@@ -1,10 +1,12 @@
 'use client';
 
-import { useAuthGuard } from 'src/hooks/useAuthGuard';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
 
-export default function AdminCommentsPage() {
+import { useAuthGuard } from 'src/hooks/useAuthGuard';
+import AdminExperiencesDashboard from '@/app/[locale]/admin/dashboard/experiences/AdminExperiencesDashboard';
+
+export default function AdminExperiencesPage() {
   const { loading, isAuthenticated } = useAuthGuard();
 
   if (loading) {
@@ -23,7 +25,7 @@ export default function AdminCommentsPage() {
           <p className="font-bold">Back to Dashboard</p>
         </div>
       </Link>
-      This is the experiences admin dashboard page.
+      <AdminExperiencesDashboard />
     </div>
   );
 }
