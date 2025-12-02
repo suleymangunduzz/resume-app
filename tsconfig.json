@@ -17,7 +17,8 @@
     "paths": {
       "@/app/*": ["src/app/*"],
       "@/i18n/*": ["src/i18n/*"],
-      "@/components/*": ["src/components/*"]
+      "@/components/*": ["src/components/*"],
+      "@/hooks/*": ["src/hooks/*"]
     },
     "target": "ES2017",
     "plugins": [

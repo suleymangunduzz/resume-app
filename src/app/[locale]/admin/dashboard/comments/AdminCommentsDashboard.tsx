@@ -2,14 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export type Comment = {
-  _id: string;
-  description: string;
-  companyName: string;
-  name: string;
-  title: string;
-  show: boolean;
-};
+import { Comment } from '@/app/[locale]/comments/page';
 
 export default function AdminCommentsDashboard() {
   const [comments, setComments] = useState<Comment[]>([]);

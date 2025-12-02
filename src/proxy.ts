@@ -1,11 +1,42 @@
-import createMiddleware from 'next-intl/middleware';
+import createIntlMiddleware from 'next-intl/middleware';
 import { routing } from '@/i18n/routing';
+import { NextResponse } from 'next/server';
 
-export default createMiddleware(routing);
+const intlMiddleware = createIntlMiddleware(routing);
+
+function isProtectedRoute(pathname: string) {
+  const withoutLocale = pathname.replace(/^\/[a-z]{2}(?=\/)/, '');
+  return withoutLocale.startsWith('/admin/dashboard');
+}
+
+export default function middleware(req: any) {
+  const { pathname } = req.nextUrl;
+
+  // 1. Run next-intl middleware
+  const intlResponse = intlMiddleware(req);
+
+  // 2. AUTH CHECK (no mutation of req)
+  if (isProtectedRoute(pathname)) {
+    const token = req.cookies.get('admin_token');
+
+    if (!token) {
+      const url = new URL(req.url);
+
+      // Extract locale from pathname safely
+      const locale = url.pathname.split('/')[1];
+
+      url.pathname = `/${locale}/admin/login`;
+      return NextResponse.redirect(url);
+    }
+  }
+
+  // 3. If next-intl returned a response, use it
+  if (intlResponse) return intlResponse;
+
+  // 4. Otherwise continue normally
+  return NextResponse.next();
+}
 
 export const config = {
-  // Match all pathnames except for
-  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
-  // - … the ones containing a dot (e.g. `favicon.ico`)
   matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
 };
