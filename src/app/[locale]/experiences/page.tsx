@@ -112,14 +112,18 @@ export default async function Page({ params }: PageProps) {
                   <div>
                     <h2 className="text-xl font-semibold text-[var(--card-text)] hover:text-[var(--card-link)] transition-colors">
                       {title} at{' '}
-                      <a
-                        href={website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline text-[var(--card-link)]"
-                      >
-                        {companyName}
-                      </a>
+                      {website ? (
+                        <a
+                          href={website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline text-[var(--card-link)]"
+                        >
+                          {companyName}
+                        </a>
+                      ) : (
+                        companyName
+                      )}
                     </h2>
                     <h4 className="text-sm mt-1 text-[var(--card-subtext)]">
                       {location} |{' '}
