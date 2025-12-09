@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Experience } from '@/app/[locale]/experiences/page';
 
-type ExperienceFormProps = {
+type ExperienceUpdateFormProps = {
   experienceId: string;
 };
 
@@ -16,25 +16,39 @@ function formatDateForInput(dateStr: string | null) {
   return `${year}-${month}-${day}`;
 }
 
-export default function ExperienceForm({ experienceId }: ExperienceFormProps) {
+export default function ExperienceUpdateForm({
+  experienceId,
+}: ExperienceUpdateFormProps) {
   const [experience, setExperience] = useState<Experience | null>(null);
   const [loading, setLoading] = useState(true);
   const [submitLoading, setSubmitLoading] = useState(false);
   const [fetchingError, setFetchingError] = useState('');
   const [error, setError] = useState('');
 
+  const [beginDate, setBeginDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [stillWorking, setStillWorking] = useState(false);
+
   useEffect(() => {
     async function fetchExperience() {
       setLoading(true);
       setFetchingError('');
+
       try {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BASE_API_URL}/experience/${experienceId}`,
           { credentials: 'include' },
         );
+
         if (!res.ok) throw new Error('Failed to fetch experience');
+
         const data: Experience = await res.json();
         setExperience(data);
+
+        // Initialize form fields
+        setBeginDate(formatDateForInput(data.beginDate));
+        setEndDate(formatDateForInput(data.endDate));
+        setStillWorking(data.stillWorking);
       } catch (err: any) {
         setFetchingError(err.message || 'Error fetching experience');
       } finally {
@@ -45,16 +59,26 @@ export default function ExperienceForm({ experienceId }: ExperienceFormProps) {
     fetchExperience();
   }, [experienceId]);
 
+  const handleStillWorkingChange = () => {
+    setStillWorking((prev) => {
+      const newVal = !prev;
+
+      if (newVal) {
+        setEndDate('');
+      } else {
+        if (experience?.endDate) {
+          setEndDate(formatDateForInput(experience.endDate));
+        }
+      }
+
+      return newVal;
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitLoading(true);
     setError('');
-
-    const formData = new FormData(e.currentTarget);
-    const beginDate = formData.get('beginDate') as string;
-    const endDate = formData.get('endDate') as string;
-    const stillWorking = formData.get('stillWorking') === 'on';
-    const description = formData.get('description') as string;
 
     try {
       const res = await fetch(
@@ -67,14 +91,16 @@ export default function ExperienceForm({ experienceId }: ExperienceFormProps) {
             beginDate,
             endDate: stillWorking ? null : endDate,
             stillWorking,
-            description,
+            description: experience?.description ?? '',
           }),
         },
       );
 
-      if (!res.ok) throw new Error('Failed to update experience');
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || 'Failed to update experience');
+      }
 
-      setError('');
       alert('Experience updated successfully!');
     } catch (err: any) {
       setError(err.message || 'Error updating experience');
@@ -110,7 +136,8 @@ export default function ExperienceForm({ experienceId }: ExperienceFormProps) {
         <input
           type="date"
           name="beginDate"
-          defaultValue={formatDateForInput(experience.beginDate)}
+          value={beginDate}
+          onChange={(e) => setBeginDate(e.target.value)}
           required
           className="w-full px-3 py-2 rounded border"
           style={{
@@ -127,10 +154,11 @@ export default function ExperienceForm({ experienceId }: ExperienceFormProps) {
         <input
           type="date"
           name="endDate"
-          defaultValue={formatDateForInput(experience.endDate)}
-          disabled={experience.stillWorking}
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          disabled={stillWorking}
           className={`w-full px-3 py-2 rounded border ${
-            experience.stillWorking ? 'opacity-50 cursor-not-allowed' : ''
+            stillWorking ? 'opacity-50 cursor-not-allowed' : ''
           }`}
           style={{
             background: 'var(--form-bg)',
@@ -145,7 +173,8 @@ export default function ExperienceForm({ experienceId }: ExperienceFormProps) {
         <input
           type="checkbox"
           name="stillWorking"
-          defaultChecked={experience.stillWorking}
+          checked={stillWorking}
+          onChange={handleStillWorkingChange}
           id="stillWorking"
           className="w-4 h-4"
         />

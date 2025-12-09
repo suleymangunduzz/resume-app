@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 
-import ExperienceForm from '@/app/[locale]/admin/dashboard/experiences/[id]/edit/ExperienceForm';
+import ExperienceUpdateForm from '@/app/[locale]/admin/dashboard/experiences/[id]/edit/ExperienceUpdateForm';
 import { useAuthGuard } from '@/hooks/useAuthGuard';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft } from 'lucide-react';
@@ -27,7 +27,7 @@ export default function EditExperiencePage() {
           <p className="font-bold">Back to Experience List</p>
         </div>
       </Link>
-      <ExperienceForm experienceId={experienceId as string} />
+      <ExperienceUpdateForm experienceId={experienceId as string} />
     </div>
   );
 }
