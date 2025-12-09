@@ -69,6 +69,12 @@ export default function AdminExperiencesDashboard() {
     fetchExperiences();
   }, []);
 
+  useEffect(() => {
+    if (Boolean(deleteExperienceId)) {
+      setShowDeleteModal(true);
+    }
+  }, [deleteExperienceId]);
+
   return (
     <section
       className="p-6"
@@ -110,13 +116,16 @@ export default function AdminExperiencesDashboard() {
         </div>
       )}
 
-      {/* PAGE TITLE */}
       <h2 className="text-3xl font-semibold mb-6 text-center text-[var(--card-text)]">
         Admin Experiences Dashboard
       </h2>
 
       {loading && <p>Loading experiences...</p>}
       {error && <p className="text-red-600">{error}</p>}
+
+      <button className="mb-6 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition">
+        <Link href="/admin/dashboard/experiences/new">Add New Experience</Link>
+      </button>
 
       {/* GRID */}
       <div className="grid gap-6 sm:grid-cols-2">
@@ -164,10 +173,7 @@ export default function AdminExperiencesDashboard() {
             {/* ACTION BUTTONS */}
             <div className="mt-4 flex gap-2">
               <button
-                onClick={() => {
-                  setDeleteExperienceId(exp._id);
-                  setShowDeleteModal(true);
-                }}
+                onClick={() => setDeleteExperienceId(exp._id)}
                 className="px-3 py-1 rounded bg-red-600 hover:bg-red-700 text-white"
               >
                 Delete
