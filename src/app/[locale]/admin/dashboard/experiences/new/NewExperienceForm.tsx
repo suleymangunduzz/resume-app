@@ -1,15 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export default function AddExperienceForm() {
-  const [beginDate, setBeginDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Dynamic fields in local state
   const [stillWorking, setStillWorking] = useState(false);
-  const [title, setTitle] = useState('');
-  const [companyName, setCompanyName] = useState('');
-  const [description, setDescription] = useState('');
-  const [order, setOrder] = useState<number>(1);
+  const [endDate, setEndDate] = useState('');
+  const [techStack, setTechStack] = useState<string[]>([]);
+  const [techInput, setTechInput] = useState('');
   const [submitLoading, setSubmitLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -21,27 +21,46 @@ export default function AddExperienceForm() {
     });
   };
 
+  const handleAddTech = () => {
+    const trimmed = techInput.trim();
+    if (trimmed && !techStack.includes(trimmed)) {
+      setTechStack([...techStack, trimmed]);
+      setTechInput('');
+    }
+  };
+
+  const handleRemoveTech = (tech: string) => {
+    setTechStack(techStack.filter((t) => t !== tech));
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitLoading(true);
     setError('');
 
     try {
+      const formData = new FormData(formRef.current!);
+
+      const dataToSend = {
+        title: formData.get('title'),
+        companyName: formData.get('companyName'),
+        location: formData.get('location'),
+        description: formData.get('description'),
+        beginDate: formData.get('beginDate'),
+        endDate: stillWorking ? null : endDate,
+        stillWorking,
+        order: Number(formData.get('order')),
+        website: formData.get('website'),
+        techStack,
+      };
+
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_API_URL}/experience`,
+        `${process.env.NEXT_PUBLIC_BASE_API_URL}/experience/add`,
         {
           method: 'POST',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            title,
-            companyName,
-            description,
-            beginDate,
-            endDate: stillWorking ? null : endDate,
-            stillWorking,
-            order,
-          }),
+          body: JSON.stringify(dataToSend),
         },
       );
 
@@ -52,14 +71,14 @@ export default function AddExperienceForm() {
 
       alert('Experience added successfully!');
 
-      // Reset form
-      setTitle('');
-      setCompanyName('');
-      setDescription('');
-      setBeginDate('');
-      setEndDate('');
+      // Reset uncontrolled fields
+      formRef.current?.reset();
+
+      // Reset local state
       setStillWorking(false);
-      setOrder(1);
+      setEndDate('');
+      setTechStack([]);
+      setTechInput('');
     } catch (err: any) {
       setError(err.message || 'Error creating experience');
     } finally {
@@ -69,6 +88,7 @@ export default function AddExperienceForm() {
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit}
       className="p-6 rounded-xl shadow border max-w-md mx-auto"
       style={{
@@ -85,8 +105,7 @@ export default function AddExperienceForm() {
       <div className="mb-4">
         <label className="block mb-1 font-medium">Order</label>
         <select
-          value={order}
-          onChange={(e) => setOrder(Number(e.target.value))}
+          name="order"
           className="w-full px-3 py-2 rounded border"
           style={{
             background: 'var(--form-bg)',
@@ -107,9 +126,9 @@ export default function AddExperienceForm() {
         <label className="block mb-1 font-medium">Job Title</label>
         <input
           type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          name="title"
           required
+          placeholder="e.g., Senior Developer"
           className="w-full px-3 py-2 rounded border"
           style={{
             background: 'var(--form-bg)',
@@ -124,9 +143,42 @@ export default function AddExperienceForm() {
         <label className="block mb-1 font-medium">Company Name</label>
         <input
           type="text"
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
+          name="companyName"
           required
+          placeholder="e.g., Tech Corp"
+          className="w-full px-3 py-2 rounded border"
+          style={{
+            background: 'var(--form-bg)',
+            color: 'var(--form-text)',
+            borderColor: 'var(--form-border)',
+          }}
+        />
+      </div>
+
+      {/* Location */}
+      <div className="mb-4">
+        <label className="block mb-1 font-medium">Location</label>
+        <input
+          type="text"
+          name="location"
+          required
+          placeholder="City, Country"
+          className="w-full px-3 py-2 rounded border"
+          style={{
+            background: 'var(--form-bg)',
+            color: 'var(--form-text)',
+            borderColor: 'var(--form-border)',
+          }}
+        />
+      </div>
+
+      {/* Website */}
+      <div className="mb-4">
+        <label className="block mb-1 font-medium">Website</label>
+        <input
+          type="text"
+          name="website"
+          placeholder="https://example.com"
           className="w-full px-3 py-2 rounded border"
           style={{
             background: 'var(--form-bg)',
@@ -141,8 +193,7 @@ export default function AddExperienceForm() {
         <label className="block mb-1 font-medium">Start Date</label>
         <input
           type="date"
-          value={beginDate}
-          onChange={(e) => setBeginDate(e.target.value)}
+          name="beginDate"
           required
           className="w-full px-3 py-2 rounded border"
           style={{
@@ -183,13 +234,56 @@ export default function AddExperienceForm() {
         <label className="text-[var(--form-text)]">Still Working Here</label>
       </div>
 
+      {/* Tech Stack */}
+      <div className="mb-4">
+        <label className="block mb-1 font-medium">Tech Stack</label>
+        <div className="flex gap-2 mb-2">
+          <input
+            type="text"
+            value={techInput}
+            onChange={(e) => setTechInput(e.target.value)}
+            placeholder="Add technology"
+            className="flex-1 px-3 py-2 rounded border"
+            style={{
+              background: 'var(--form-bg)',
+              color: 'var(--form-text)',
+              borderColor: 'var(--form-border)',
+            }}
+          />
+          <button
+            type="button"
+            onClick={handleAddTech}
+            className="px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            Add
+          </button>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {techStack.map((tech) => (
+            <span
+              key={tech}
+              className="bg-gray-200 px-2 py-1 rounded flex items-center gap-1"
+            >
+              {tech}
+              <button
+                type="button"
+                onClick={() => handleRemoveTech(tech)}
+                className="text-red-500 font-bold"
+              >
+                ×
+              </button>
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* Description */}
       <div className="mb-4">
         <label className="block mb-1 font-medium">Description</label>
         <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          name="description"
           rows={5}
+          required
           className="w-full px-3 py-2 rounded border"
           style={{
             background: 'var(--form-bg)',

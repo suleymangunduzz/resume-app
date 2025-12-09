@@ -69,6 +69,12 @@ export default function AdminExperiencesDashboard() {
     fetchExperiences();
   }, []);
 
+  useEffect(() => {
+    if (Boolean(deleteExperienceId)) {
+      setShowDeleteModal(true);
+    }
+  }, [deleteExperienceId]);
+
   return (
     <section
       className="p-6"
@@ -167,10 +173,7 @@ export default function AdminExperiencesDashboard() {
             {/* ACTION BUTTONS */}
             <div className="mt-4 flex gap-2">
               <button
-                onClick={() => {
-                  setDeleteExperienceId(exp._id);
-                  setShowDeleteModal(true);
-                }}
+                onClick={() => setDeleteExperienceId(exp._id)}
                 className="px-3 py-1 rounded bg-red-600 hover:bg-red-700 text-white"
               >
                 Delete
