@@ -183,6 +183,11 @@ export default function AdminExperiencesDashboard() {
                   Edit
                 </button>
               </Link>
+              <Link href={`/admin/dashboard/experiences/${exp._id}/tech-stack`}>
+                <button className="px-3 py-1 rounded bg-indigo-600 hover:bg-indigo-700 text-white">
+                  Edit Tech Stack
+                </button>
+              </Link>
             </div>
           </div>
         ))}
